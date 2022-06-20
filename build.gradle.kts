@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
     testImplementation(platform("org.junit:junit-bom:5.8.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
