@@ -11,16 +11,22 @@ repositories {
   mavenCentral()
 }
 
+val jacksonDataformatYamlVersion: String by project
+val jacksonModuleKotlinVersion: String by project
+val junitBomVersion: String by project
+
 dependencies {
-  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
-  testImplementation(platform("org.junit:junit-bom:5.8.2"))
+  val implementation by configurations
+  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataformatYamlVersion")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
+  testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
   testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
+tasks.withType<Test> {
   useJUnitPlatform()
   systemProperty("fileExtension", System.getProperty("fileExtension", "json"))
+  systemProperties.putAll(project.gradle.startParameter.systemPropertiesArgs)
 
   testLogging {
     events("passed", "skipped", "failed")

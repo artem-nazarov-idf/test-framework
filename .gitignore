@@ -23,7 +23,6 @@
 hs_err_pid*
 
 # gradle files
-/gradle.properties
 /gradlew
 /gradlew.bat
 /settings.gradle.kts
