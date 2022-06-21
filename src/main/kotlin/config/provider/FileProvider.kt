@@ -6,7 +6,7 @@ import java.net.URL
 class FileProvider {
   fun getFileFromPath(nameFile: String): File {
     val fileExtension = System.getProperty("fileExtension")
-    val resource: URL? = this.javaClass.classLoader.getResource("$nameFile.$fileExtension")
+    val resource: URL? = this.javaClass.classLoader.getResource("authData/$nameFile.$fileExtension")
     return File(resource?.path.toString())
   }
 }

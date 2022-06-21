@@ -16,17 +16,15 @@ val jacksonModuleKotlinVersion: String by project
 val junitBomVersion: String by project
 
 dependencies {
-  val implementation by configurations
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataformatYamlVersion")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
   testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
   testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.withType<Test> {
+tasks.test {
   useJUnitPlatform()
   systemProperty("fileExtension", System.getProperty("fileExtension", "json"))
-  systemProperties.putAll(project.gradle.startParameter.systemPropertiesArgs)
 
   testLogging {
     events("passed", "skipped", "failed")
