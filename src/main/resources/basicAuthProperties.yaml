@@ -1,4 +1,4 @@
-user_god: testYaml
+user: test
 prepass: prepassYaml
-pass: passYaml
+pass: pass
 host: qa-delivery-solva-kz-release.moneyman.ru

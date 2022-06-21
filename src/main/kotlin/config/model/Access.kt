@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 data class Access(
-  @JsonProperty("user_god")
-  var user: String,
-  var pass: String,
+  @JsonProperty("user")
+  var userName: String,
+  @JsonProperty("pass")
+  var password: String,
   var host: String)
 

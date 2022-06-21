@@ -21,6 +21,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty("fileExtension", System.getProperty("fileExtension", "json"))
+
     testLogging {
         events("passed", "skipped", "failed")
     }
