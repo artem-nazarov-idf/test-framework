@@ -10,4 +10,3 @@ data class Access(
   @JsonProperty("pass")
   var password: String,
   var host: String)
-
