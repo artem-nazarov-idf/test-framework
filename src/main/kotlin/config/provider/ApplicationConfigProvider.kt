@@ -3,10 +3,10 @@ package config.provider
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
-import config.model.Access
+import config.model.ApplicationConfig
 
-class AccessProvider {
-  fun getAccessDataFromJsonOrYaml(fileName: String): Access {
+class ApplicationConfigProvider {
+  fun getAccessDataFromJsonOrYaml(fileName: String): ApplicationConfig {
     val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules() // worksWithJsonToo
     return mapper.readValue(FileProvider().getFileFromPath(fileName))
   }
