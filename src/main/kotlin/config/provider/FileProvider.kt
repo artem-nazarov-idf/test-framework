@@ -4,7 +4,7 @@ import java.io.File
 import java.net.URL
 
 class FileProvider {
-  fun getFileFromPath(nameFile : String): File {
+  fun getFileFromPath(nameFile: String): File {
     val fileExtension = System.getProperty("fileExtension")
     val resource: URL? = this.javaClass.classLoader.getResource("$nameFile.$fileExtension")
     return File(resource?.path.toString())
