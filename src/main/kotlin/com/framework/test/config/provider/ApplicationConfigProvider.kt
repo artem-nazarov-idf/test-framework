@@ -6,8 +6,8 @@ class ApplicationConfigProvider(private val fileName: String, private val fileTy
 
   fun makeApplicationConfig(): ApplicationConfigInterface {
     return when (fileType) {
-      FileType.JSON -> ApplicationConfigJson(fileName)
-      FileType.YAML -> ApplicationConfigYaml(fileName)
+      FileType.JSON -> ApplicationConfigJson(FileProvider(fileName).getFileFromPath())
+      FileType.YAML -> ApplicationConfigYaml(FileProvider(fileName).getFileFromPath())
 
     }
   }

@@ -10,9 +10,7 @@ class ApplicationConfigProviderTest {
   @ParameterizedTest
   @EnumSource(FileType::class)
   fun test(fileType: FileType) {
-    System.setProperty("fileExtension", fileType.value)
-    val access = ApplicationConfigProvider(FileNames.BASIC_AUTH_FILE_NAME.value, fileType).makeApplicationConfig()
-
+    val applicationConfig = ApplicationConfigProvider(FileNames.BASIC_AUTH_FILE_NAME.value, fileType)
 
   }
 }
