@@ -1,9 +1,9 @@
-package config.provider
+package com.framework.test.config.provider
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
-import config.model.ApplicationConfig
+import com.framework.test.config.model.ApplicationConfig
 
 class ApplicationConfigProvider {
   fun getAccessDataFromJsonOrYaml(fileName: String): ApplicationConfig {

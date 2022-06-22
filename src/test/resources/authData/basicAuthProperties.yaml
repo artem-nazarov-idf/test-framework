@@ -1,0 +1,4 @@
+user: test
+prepass: prepassYaml
+pass: pass
+host: qa-delivery-solva-kz-release.moneyman.ru

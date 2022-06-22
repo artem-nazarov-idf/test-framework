@@ -1,5 +1,7 @@
-import config.provider.ApplicationConfigProvider
-import constants.FileNames
+package com.framework.test
+
+import com.framework.test.config.provider.ApplicationConfigProvider
+import com.framework.test.constants.FileNames
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource

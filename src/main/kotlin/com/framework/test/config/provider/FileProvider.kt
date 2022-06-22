@@ -1,4 +1,4 @@
-package config.provider
+package com.framework.test.config.provider
 
 import java.io.File
 import java.net.URL
