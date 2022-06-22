@@ -1,6 +1,6 @@
 {
-  "user": "test",
+  "user": "testJson",
   "prepass": "prepassJson",
-  "pass": "pass",
-  "host": "qa-delivery-solva-kz-release.moneyman.ru"
+  "pass": "passJson",
+  "host": "qa-delivery-solva-kz-release.moneyman.ruJson"
 }

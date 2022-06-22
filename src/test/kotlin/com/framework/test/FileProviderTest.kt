@@ -11,8 +11,9 @@ class FileProviderTest {
   @ParameterizedTest
   @EnumSource(FileType::class)
   fun test(fileType: FileType) {
-    val fileName = FileNames.BASIC_AUTH_FILE_NAME.value
     System.setProperty("fileExtension", fileType.value)
+
+    val fileName = FileNames.BASIC_AUTH_FILE_NAME.value
     val file = FileProvider(fileName).getFileFromPath()
 
     Assertions.assertEquals("$fileName.${fileType.value}", file.name)
