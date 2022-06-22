@@ -20,4 +20,10 @@ class ApplicationConfigProviderTest {
 
     Assertions.assertTrue(applicationConfig is ApplicationConfigFromJson, "applicationConfig not is from Json")
   }
+  @Test
+  fun makeApplicationConfigFromDefault() {
+    val applicationConfig = ApplicationConfigProvider().makeApplicationConfig()
+
+    Assertions.assertTrue(applicationConfig is ApplicationConfigFromJson, "applicationConfig not is from Json")
+  }
 }
