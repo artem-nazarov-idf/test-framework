@@ -5,5 +5,5 @@ import java.io.File
 
 interface ConfigByFile {
   fun getConfigByFile(): ApplicationConfig
-  fun getFileByName(fileName: String): File
+  fun getFileByName(): File
 }

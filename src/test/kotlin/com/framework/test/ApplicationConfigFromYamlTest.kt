@@ -10,7 +10,7 @@ class ApplicationConfigFromYamlTest {
     val applicationConfig = ApplicationConfigFromYaml().getConfigByFile()
 
     Assertions.assertEquals("testYaml", applicationConfig.userName)
-    Assertions.assertEquals("prepassYaml", applicationConfig.password)
+    Assertions.assertEquals("passYaml", applicationConfig.password)
     Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruYaml", applicationConfig.host)
   }
 }
