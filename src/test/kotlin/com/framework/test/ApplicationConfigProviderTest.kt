@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test
 class ApplicationConfigProviderTest {
   @Test
   fun makeApplicationConfigFromYaml() {
-    val applicationConfig = ApplicationConfigProvider(FileType.YAML).makeApplicationConfig()
+    val applicationConfig = ApplicationConfigProvider().makeApplicationConfig(FileType.YAML)
 
     Assertions.assertTrue(applicationConfig is ApplicationConfigFromYaml, "applicationConfig not is from Yaml")
   }
   @Test
   fun makeApplicationConfigFromJson() {
-    val applicationConfig = ApplicationConfigProvider(FileType.JSON).makeApplicationConfig()
+    val applicationConfig = ApplicationConfigProvider().makeApplicationConfig(FileType.JSON)
 
     Assertions.assertTrue(applicationConfig is ApplicationConfigFromJson, "applicationConfig not is from Json")
   }
