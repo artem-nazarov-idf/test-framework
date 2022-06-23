@@ -2,10 +2,16 @@ package com.framework.test.config.provider
 
 import com.framework.test.constants.FileType
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ApplicationConfigProviderTest {
-  private val applicationConfig = ApplicationConfigProvider()
+  private lateinit var applicationConfig: ApplicationConfigProvider
+
+  @BeforeEach
+  fun initialiseApplicationConfigProvider() {
+    applicationConfig = ApplicationConfigProvider()
+  }
 
   @Test
   fun makeApplicationConfigFromYaml() {
