@@ -1,6 +1,5 @@
-package com.framework.test
+package com.framework.test.config.provider
 
-import com.framework.test.config.provider.FileProvider
 import com.framework.test.constants.FileNames
 import com.framework.test.constants.FileType
 import org.junit.jupiter.api.Assertions

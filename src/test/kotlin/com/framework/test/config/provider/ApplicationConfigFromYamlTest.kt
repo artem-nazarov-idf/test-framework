@@ -1,6 +1,5 @@
-package com.framework.test
+package com.framework.test.config.provider
 
-import com.framework.test.config.provider.ApplicationConfigFromYaml
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
