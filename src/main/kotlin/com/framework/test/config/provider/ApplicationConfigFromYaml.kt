@@ -8,7 +8,7 @@ import com.framework.test.constants.FileNames
 import com.framework.test.constants.FileType
 
 class ApplicationConfigFromYaml() : ConfigFromFile {
-  override val fileName  = FileNames.BASIC_AUTH_FILE_NAME.value
+  override val fileName = FileNames.BASIC_AUTH_FILE_NAME.value
   override val fileException = FileType.YAML.value
   private val file = getConfigFile()
   override fun getConfigFromFile(): ApplicationConfig {
