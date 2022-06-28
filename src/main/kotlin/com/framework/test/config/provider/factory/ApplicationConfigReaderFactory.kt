@@ -3,15 +3,19 @@ package com.framework.test.config.provider.factory
 import com.framework.test.constants.FileType
 
 class ApplicationConfigReaderFactory() {
-  private val defaultFileType: String = System.getProperty("config.file.type") ?: FileType.JSON.value
+  private val defaultFileType: FileType by lazy {
+    System.getProperty("config.file.type")?.let {
+      FileType.valueOf(
+        it
+          .uppercase()
+      )
+    } ?: FileType.JSON
+  }
 
-  fun getAppConfigReaderFactory(fileType: String = defaultFileType): ApplicationConfigReader {
+  fun getAppConfigReaderFactory(fileType: FileType = defaultFileType): ApplicationConfigReader {
     return when (fileType) {
-      FileType.JSON.value -> JsonApplicationConfigReaderFactory()
-      FileType.YAML.value -> YamlApplicationConfigReaderFactory()
-      else -> {
-        throw IllegalArgumentException("fileType is [$fileType], allowed only json or yaml")
-      }
+      FileType.JSON -> JsonApplicationConfigReaderFactory()
+      FileType.YAML -> YamlApplicationConfigReaderFactory()
     }
   }
 }
