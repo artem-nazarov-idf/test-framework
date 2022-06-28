@@ -10,7 +10,7 @@ class ApplicationConfigReaderFactory() {
       FileType.JSON.value -> JsonApplicationConfigReaderFactory()
       FileType.YAML.value -> YamlApplicationConfigReaderFactory()
       else -> {
-        throw IllegalArgumentException("fileType is \"$fileType\", allowed only json or yaml")
+        throw IllegalArgumentException("fileType is [$fileType], allowed only json or yaml")
       }
     }
   }
