@@ -5,10 +5,7 @@ import com.framework.test.constants.FileType
 class ApplicationConfigReaderFactory() {
   private val defaultFileType: FileType by lazy {
     System.getProperty("config.file.type")?.let {
-      FileType.valueOf(
-        it
-          .uppercase()
-      )
+      FileType.valueOf(it.uppercase())
     } ?: FileType.JSON
   }
 
