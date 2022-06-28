@@ -46,6 +46,6 @@ class ApplicationConfigReaderFactoryTest {
       IllegalArgumentException::class.java
     ) { ApplicationConfigReaderFactory().getAppConfigReaderFactory() }
 
-    Assertions.assertEquals("fileType is \"xml\", allowed only json or yaml", illegalArgumentException.message)
+    Assertions.assertEquals("fileType is [xml], allowed only json or yaml", illegalArgumentException.message)
   }
 }
