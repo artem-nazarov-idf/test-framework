@@ -6,7 +6,6 @@ import com.framework.test.config.model.ApplicationConfig
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
 
-// передать в конструктор fileProvider: FileProvider если не получиться сделать spy
 class JsonApplicationConfigReaderFactory(
   private val fileProvider: FileProvider = FileProvider()
 ) : ApplicationConfigReader {
