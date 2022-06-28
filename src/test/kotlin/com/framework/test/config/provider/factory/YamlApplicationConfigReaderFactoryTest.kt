@@ -20,7 +20,7 @@ class YamlApplicationConfigReaderFactoryTest {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
-      this.javaClass.classLoader.getResource(configFilePath)!!.path
+      this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
     val applicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getConfigFromFile()

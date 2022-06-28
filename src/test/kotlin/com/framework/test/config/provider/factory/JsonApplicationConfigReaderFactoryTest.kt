@@ -20,7 +20,7 @@ class JsonApplicationConfigReaderFactoryTest {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.json"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
-      this.javaClass.classLoader.getResource(configFilePath)!!.path
+      this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
     val applicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
