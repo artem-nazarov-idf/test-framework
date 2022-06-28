@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class ApplicationConfigReaderFactoryTest {
 
   @Test
-  fun `make yaml application config reader`() {
+  fun `Make yaml application config reader`() {
     System.setProperty("config.file.type", "yaml")
     val applicationConfigFromYaml = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -17,7 +17,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test
-  fun `make json application config reader`() {
+  fun `Make json application config reader`() {
     System.setProperty("config.file.type", "json")
     val applicationConfigFromJson = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -28,7 +28,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test
-  fun `make json application config reader default`() {
+  fun `Make json application config reader default`() {
     System.clearProperty("config.file.type")
     val applicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -39,7 +39,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test()
-  fun `make application config reader error with xml`() {
+  fun `Make application config reader error with xml`() {
     System.setProperty("config.file.type", "xml")
 
     val illegalArgumentException: IllegalArgumentException = Assertions.assertThrows(

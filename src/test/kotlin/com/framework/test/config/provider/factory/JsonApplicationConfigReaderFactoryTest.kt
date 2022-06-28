@@ -16,7 +16,7 @@ class JsonApplicationConfigReaderFactoryTest {
   lateinit var fileProvider: FileProvider
 
   @Test
-  fun getApplicationConfigByFileJson() {
+  fun `Get application config by file json`() {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.json"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(

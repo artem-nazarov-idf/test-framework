@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class FileProviderTest {
   @ParameterizedTest
   @ValueSource(strings = ["authData/basicAuthProperties.json", "authData/basicAuthProperties.yaml"])
-  fun test(pathFromSourceRoot: String) {
+  fun gettingFileFromPath(pathFromSourceRoot: String) {
     val file = FileProvider().getFileFromPath(pathFromSourceRoot)
 
     Assertions.assertEquals(pathFromSourceRoot, "${file.parentFile.name}/${file.name}")

@@ -16,7 +16,7 @@ class YamlApplicationConfigReaderFactoryTest {
   lateinit var fileProvider: FileProvider
 
   @Test
-  fun getApplicationConfigByFileYaml() {
+  fun `Get application config by file yaml`() {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
