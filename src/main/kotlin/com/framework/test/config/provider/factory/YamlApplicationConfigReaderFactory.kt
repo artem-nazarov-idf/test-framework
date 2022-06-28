@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.framework.test.config.model.ApplicationConfig
-import com.framework.test.config.provider.fileOperations.ConfigFromFile
-import com.framework.test.config.provider.fileOperations.FileProvider
+import com.framework.test.constants.FileNames
+import com.framework.test.file.reader.FileProvider
 
-class YamlApplicationConfigReaderFactory() : ConfigFromFile {
-  private val file = FileProvider("authData/basicAuthProperties.yaml").getFileFromPath()
+class YamlApplicationConfigReaderFactory(
+  private val fileProvider: FileProvider = FileProvider()
+) : ApplicationConfigReader {
+  override val configFilePath: String = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
+  private val file by lazy { fileProvider.getFileFromPath(configFilePath) }
 
   override fun getConfigFromFile(): ApplicationConfig {
     val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules() // worksWithJsonToo

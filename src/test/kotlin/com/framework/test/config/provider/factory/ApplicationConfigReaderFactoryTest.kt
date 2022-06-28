@@ -1,45 +1,51 @@
 package com.framework.test.config.provider.factory
 
-import com.framework.test.constants.FileType
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ApplicationConfigReaderFactoryTest {
-  private lateinit var applicationConfig: ApplicationConfigReaderFactory
-
-  @BeforeEach
-  fun initialiseApplicationConfigProvider() {
-    applicationConfig = ApplicationConfigReaderFactory()
-  }
 
   @Test
-  fun makeApplicationConfigFromYaml() {
-    val applicationConfigFromYaml = applicationConfig.getAppConfigReaderFactory(FileType.YAML)
+  fun `make yaml application config reader`() {
+    System.setProperty("config.file.type", "yaml")
+    val applicationConfigFromYaml = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
       applicationConfigFromYaml is YamlApplicationConfigReaderFactory,
-      "applicationConfig not is from Yaml"
+      "config.file.type not is from Yaml"
     )
   }
 
   @Test
-  fun makeApplicationConfigFromJson() {
-    val applicationConfigFromJson = applicationConfig.getAppConfigReaderFactory(FileType.JSON)
+  fun `make json application config reader`() {
+    System.setProperty("config.file.type", "json")
+    val applicationConfigFromJson = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
       applicationConfigFromJson is JsonApplicationConfigReaderFactory,
-      "applicationConfig not is from Json"
+      "config.file.type not is from Json"
     )
   }
 
   @Test
-  fun makeApplicationConfigFromDefault() {
-    val applicationConfigFromDefault = applicationConfig.getAppConfigReaderFactory()
+  fun `make json application config reader default`() {
+    System.clearProperty("config.file.type")
+    val applicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
       applicationConfigFromDefault is JsonApplicationConfigReaderFactory,
-      "applicationConfig not is from Json"
+      "config.file.type not is from Json"
     )
+  }
+
+  @Test()
+  fun `make application config reader error with xml`() {
+    System.setProperty("config.file.type", "xml")
+
+    val illegalArgumentException: IllegalArgumentException = Assertions.assertThrows(
+      IllegalArgumentException::class.java
+    ) { ApplicationConfigReaderFactory().getAppConfigReaderFactory() }
+
+    Assertions.assertEquals("fileType is \"xml\", allowed only json or yaml", illegalArgumentException.message)
   }
 }
