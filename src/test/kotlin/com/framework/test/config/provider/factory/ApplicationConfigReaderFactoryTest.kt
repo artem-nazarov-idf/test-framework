@@ -45,5 +45,7 @@ class ApplicationConfigReaderFactoryTest {
       applicationConfigFromYaml is YamlApplicationConfigReaderFactory,
       "config.file.type not is from Yaml"
     )
+
+    System.clearProperty("config.file.type")
   }
 }
