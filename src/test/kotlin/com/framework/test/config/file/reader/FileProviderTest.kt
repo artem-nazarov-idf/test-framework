@@ -9,8 +9,8 @@ class FileProviderTest {
   @ParameterizedTest
   @ValueSource(strings = ["authData/basicAuthProperties.json", "authData/basicAuthProperties.yaml"])
   fun gettingFileFromPath(pathFromSourceRoot: String) {
-    val file = FileProvider().getFileFromPath(pathFromSourceRoot)
+    val actualFile = FileProvider().getFileFromPath(pathFromSourceRoot)
 
-    Assertions.assertEquals(pathFromSourceRoot, "${file.parentFile.name}/${file.name}")
+    Assertions.assertEquals(pathFromSourceRoot, "${actualFile.parentFile.name}/${actualFile.name}")
   }
 }

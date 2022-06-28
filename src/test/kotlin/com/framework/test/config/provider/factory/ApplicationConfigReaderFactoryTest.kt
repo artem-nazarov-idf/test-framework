@@ -19,10 +19,10 @@ class ApplicationConfigReaderFactoryTest {
   @Test
   fun `Make json application config reader`() {
     System.setProperty("config.file.type", "json")
-    val applicationConfigFromJson = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
+    val actualApplicationConfigFromJson = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
-      applicationConfigFromJson is JsonApplicationConfigReaderFactory,
+      actualApplicationConfigFromJson is JsonApplicationConfigReaderFactory,
       "config.file.type not is from Json"
     )
   }
@@ -30,10 +30,10 @@ class ApplicationConfigReaderFactoryTest {
   @Test
   fun `Make json application config reader default`() {
     System.clearProperty("config.file.type")
-    val applicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
+    val actualApplicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
-      applicationConfigFromDefault is JsonApplicationConfigReaderFactory,
+      actualApplicationConfigFromDefault is JsonApplicationConfigReaderFactory,
       "config.file.type not is from Json"
     )
   }

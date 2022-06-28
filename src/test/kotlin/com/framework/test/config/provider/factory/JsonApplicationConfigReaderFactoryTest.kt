@@ -23,10 +23,10 @@ class JsonApplicationConfigReaderFactoryTest {
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val applicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val actualApplicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
 
-    Assertions.assertEquals("testJson", applicationConfig.userName)
-    Assertions.assertEquals("passJson", applicationConfig.password)
-    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruJson", applicationConfig.host)
+    Assertions.assertEquals("testJson", actualApplicationConfig.userName)
+    Assertions.assertEquals("passJson", actualApplicationConfig.password)
+    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruJson", actualApplicationConfig.host)
   }
 }
