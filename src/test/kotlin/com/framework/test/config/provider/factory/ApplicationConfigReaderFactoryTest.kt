@@ -35,4 +35,15 @@ class ApplicationConfigReaderFactoryTest {
       "config.file.type not is from Json"
     )
   }
+
+  @Test
+  fun `ApplicationConfigReaderFactory use yaml file type when provided file type is yaml from System property`() {
+    System.setProperty("config.file.type", "yaml")
+    val applicationConfigFromYaml = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
+
+    Assertions.assertTrue(
+      applicationConfigFromYaml is YamlApplicationConfigReaderFactory,
+      "config.file.type not is from Yaml"
+    )
+  }
 }
