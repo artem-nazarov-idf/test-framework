@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.applicationConfig.factory
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

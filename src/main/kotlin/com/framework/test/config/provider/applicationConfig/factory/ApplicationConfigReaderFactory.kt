@@ -1,8 +1,8 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.applicationConfig.factory
 
 import com.framework.test.constants.FileType
 
-class ApplicationConfigReaderFactory() {
+class ApplicationConfigReaderFactory {
   private val defaultFileType: String = System.getProperty("config.file.type") ?: FileType.JSON.value
 
   fun getAppConfigReaderFactory(fileType: String = defaultFileType): ApplicationConfigReader {

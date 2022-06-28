@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.applicationConfig.factory
 
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
@@ -11,22 +11,22 @@ import org.junit.jupiter.api.extension.ExtendWith
 import java.io.File
 
 @ExtendWith(MockKExtension::class)
-class YamlApplicationConfigReaderFactoryTest {
+class JsonApplicationConfigReaderFactoryTest {
   @MockK
   lateinit var fileProvider: FileProvider
 
   @Test
-  fun `Get application config by file yaml`() {
-    val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
+  fun `Get application config by file json`() {
+    val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.json"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val applicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val applicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
 
-    Assertions.assertEquals("testYaml", applicationConfig.userName)
-    Assertions.assertEquals("passYaml", applicationConfig.password)
-    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruYaml", applicationConfig.host)
+    Assertions.assertEquals("testJson", applicationConfig.userName)
+    Assertions.assertEquals("passJson", applicationConfig.password)
+    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruJson", applicationConfig.host)
   }
 }

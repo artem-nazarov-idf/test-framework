@@ -1,5 +1,6 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.driver.factory
 
+import com.framework.test.config.provider.applicationConfig.factory.JsonApplicationConfigReaderFactory
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
 import io.mockk.every
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import java.io.File
 
 @ExtendWith(MockKExtension::class)
-class JsonApplicationConfigReaderFactoryTest {
+class FirefoxDriverConfigFactoryTest {
   @MockK
   lateinit var fileProvider: FileProvider
 

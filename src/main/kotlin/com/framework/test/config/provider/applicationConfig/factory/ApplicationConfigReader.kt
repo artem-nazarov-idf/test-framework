@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.applicationConfig.factory
 
 import com.framework.test.config.model.ApplicationConfig
 

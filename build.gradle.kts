@@ -15,8 +15,12 @@ val jacksonDataformatYamlVersion: String by project
 val jacksonModuleKotlinVersion: String by project
 val junitBomVersion: String by project
 val mockkVersion: String by project
+val selenideVersion: String by project
+val webdrivermanagerVersion: String by project
 
 dependencies {
+  implementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
+  implementation("com.codeborne:selenide:$selenideVersion")
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataformatYamlVersion")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
   testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
@@ -27,6 +31,7 @@ dependencies {
 tasks.test {
   useJUnitPlatform()
   systemProperty("config.file.type", System.getProperty("config.file.type"))
+  systemProperty("config.browser.type", System.getProperty("config.browser.type"))
 
 
   testLogging {
