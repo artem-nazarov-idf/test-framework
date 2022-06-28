@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class ApplicationConfigReaderFactoryTest {
 
   @Test
-  fun `Make yaml application config reader`() {
+  fun `ApplicationConfigReaderFactory use yaml file type when provided file type is yaml`() {
     System.setProperty("config.file.type", "yaml")
     val applicationConfigFromYaml = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -17,7 +17,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test
-  fun `Make json application config reader`() {
+  fun `ApplicationConfigReaderFactory use json file type when provided file type is json`() {
     System.setProperty("config.file.type", "json")
     val actualApplicationConfigFromJson = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -28,7 +28,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test
-  fun `Make json application config reader default`() {
+  fun `ApplicationConfigReaderFactory use default file type when file type not provided`() {
     System.clearProperty("config.file.type")
     val actualApplicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
@@ -39,7 +39,7 @@ class ApplicationConfigReaderFactoryTest {
   }
 
   @Test()
-  fun `Make application config reader error with xml`() {
+  fun `ApplicationConfigReaderFactory throws exception for not supported file type xml`() {
     System.setProperty("config.file.type", "xml")
 
     val illegalArgumentException: IllegalArgumentException = Assertions.assertThrows(
