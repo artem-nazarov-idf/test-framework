@@ -16,17 +16,17 @@ class YamlApplicationConfigReaderFactoryTest {
   lateinit var fileProvider: FileProvider
 
   @Test
-  fun `Get application config by file yaml`() {
+  fun `YamlApplicationConfigReaderFactory returns ApplicationConfig selected yaml file`() {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val applicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val actualApplicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
 
-    Assertions.assertEquals("testYaml", applicationConfig.userName)
-    Assertions.assertEquals("passYaml", applicationConfig.password)
-    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruYaml", applicationConfig.host)
+    Assertions.assertEquals("testYaml", actualApplicationConfig.userName)
+    Assertions.assertEquals("passYaml", actualApplicationConfig.password)
+    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruYaml", actualApplicationConfig.host)
   }
 }

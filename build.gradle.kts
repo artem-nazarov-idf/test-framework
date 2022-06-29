@@ -30,9 +30,7 @@ dependencies {
 
 tasks.test {
   useJUnitPlatform()
-  systemProperty("config.file.type", System.getProperty("config.file.type"))
-  systemProperty("config.browser.type", System.getProperty("config.browser.type"))
-
+  systemProperties.putAll(project.gradle.startParameter.systemPropertiesArgs)
 
   testLogging {
     events("passed", "skipped", "failed")

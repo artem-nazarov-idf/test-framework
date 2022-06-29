@@ -16,17 +16,17 @@ class JsonApplicationConfigReaderFactoryTest {
   lateinit var fileProvider: FileProvider
 
   @Test
-  fun `Get application config by file json`() {
+  fun `JsonApplicationConfigReaderFactory returns ApplicationConfig selected json file`() {
     val configFilePath = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.json"
 
     every { fileProvider.getFileFromPath(configFilePath) } returns File(
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val applicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val actualApplicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
 
-    Assertions.assertEquals("testJson", applicationConfig.userName)
-    Assertions.assertEquals("passJson", applicationConfig.password)
-    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruJson", applicationConfig.host)
+    Assertions.assertEquals("testJson", actualApplicationConfig.userName)
+    Assertions.assertEquals("passJson", actualApplicationConfig.password)
+    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruJson", actualApplicationConfig.host)
   }
 }
