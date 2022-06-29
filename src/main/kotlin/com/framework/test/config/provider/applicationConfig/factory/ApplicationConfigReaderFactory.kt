@@ -1,10 +1,10 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.config.provider.applicationConfig.factory
 
 import com.framework.test.constants.FileType
 
-class ApplicationConfigReaderFactory() {
+class ApplicationConfigReaderFactory {
   private val defaultFileType: FileType by lazy {
-    System.getProperty("config.file.type")?.let { FileType.from(it) } ?: FileType.JSON
+    System.getProperty("config.file.type")?.let { FileType.from(it) } ?: FileType.YAML
   }
 
   fun getAppConfigReaderFactory(fileType: FileType = defaultFileType): ApplicationConfigReader {

@@ -3,15 +3,14 @@ package com.framework.test.config.provider.driver.factory
 import com.framework.test.constants.BrowserType
 
 class WebDriverFactory {
-  private val defaultBrowserType: String = System.getProperty("config.browser.type") ?: BrowserType.FIREFOX.value
+  private val defaultBrowserType: BrowserType by lazy {
+    System.getProperty("config.file.type")?.let { BrowserType.from(it) } ?: BrowserType.FIREFOX
+  }
 
-  fun getDriverConfigReaderFactory(browserType: String = defaultBrowserType): DriverConfigReader {
+  fun getDriverConfigReaderFactory(browserType: BrowserType = defaultBrowserType): DriverConfigReader {
     return when (browserType) {
-      BrowserType.FIREFOX.value -> FirefoxDriverConfigFactory()
-      BrowserType.CHROME.value -> ChromeDriverConfigFactory()
-      else -> {
-        throw IllegalArgumentException("browserType is \"$browserType\", allowed only chrome or firefox")
-      }
+      BrowserType.FIREFOX -> FirefoxDriverConfigFactory()
+      BrowserType.CHROME -> ChromeDriverConfigFactory()
     }
   }
 }

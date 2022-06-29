@@ -16,10 +16,8 @@ val jacksonModuleKotlinVersion: String by project
 val junitBomVersion: String by project
 val mockkVersion: String by project
 val selenideVersion: String by project
-val webdrivermanagerVersion: String by project
 
 dependencies {
-  implementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
   implementation("com.codeborne:selenide:$selenideVersion")
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataformatYamlVersion")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")

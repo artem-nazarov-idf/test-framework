@@ -9,5 +9,8 @@ data class ApplicationConfig(
   var userName: String,
   @JsonProperty("pass")
   var password: String,
-  var host: String
+  var host: String,
+  var crmLoginEndpoint: String,
+  var crmStartEndpoint: String,
+  var crmUsers: CRMUsers
 )

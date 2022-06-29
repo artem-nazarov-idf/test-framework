@@ -6,4 +6,6 @@ interface DriverConfigReader {
   val configFilePath: String
 
   fun getConfigFromFile(): DriverConfig
+
+  fun setDriverConfig()
 }

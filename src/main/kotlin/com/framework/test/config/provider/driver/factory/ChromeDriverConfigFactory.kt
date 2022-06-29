@@ -20,12 +20,11 @@ class ChromeDriverConfigFactory(
     return mapper.readValue(file)
   }
 
-  fun setDriverConfig() {
+  override fun setDriverConfig() {
     val driverConfig = getConfigFromFile()
     WebDriverManager.chromedriver().setup()
 
-    Configuration.browser = "chrome"
-    Configuration.browserVersion = driverConfig.browserVersion
+    Configuration.baseUrl = "https://"
     Configuration.browserSize = driverConfig.browserSize
   }
 }

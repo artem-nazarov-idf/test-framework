@@ -31,8 +31,8 @@ class ApplicationConfigReaderFactoryTest {
     val actualApplicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
-      actualApplicationConfigFromDefault is JsonApplicationConfigReaderFactory,
-      "config.file.type not is from Json"
+      actualApplicationConfigFromDefault is YamlApplicationConfigReaderFactory,
+      "config.file.type not is from Yaml"
     )
   }
 

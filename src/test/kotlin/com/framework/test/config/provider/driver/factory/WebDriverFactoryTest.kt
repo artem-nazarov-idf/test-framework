@@ -31,24 +31,12 @@ class WebDriverFactoryTest {
   }
 
   @Test
-  fun `Make json application config reader default`() {
-    System.clearProperty("config.file.type")
+  fun `Make yaml application config reader default`() {
     val applicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
       applicationConfigFromDefault is JsonApplicationConfigReaderFactory,
-      "config.file.type not is from Json"
+      "config.file.type not is from yaml"
     )
-  }
-
-  @Test()
-  fun `Make application config reader error with xml`() {
-    System.setProperty("config.file.type", "xml")
-
-    val illegalArgumentException: IllegalArgumentException = Assertions.assertThrows(
-      IllegalArgumentException::class.java
-    ) { ApplicationConfigReaderFactory().getAppConfigReaderFactory() }
-
-    Assertions.assertEquals("fileType is \"xml\", allowed only json or yaml", illegalArgumentException.message)
   }
 }
