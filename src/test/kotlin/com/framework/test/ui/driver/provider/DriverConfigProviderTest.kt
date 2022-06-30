@@ -1,6 +1,5 @@
-package com.framework.test.ui.driver
+package com.framework.test.ui.driver.provider
 
-import com.framework.test.ui.driver.provider.DriverConfigProvider
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.applicationConfig.factory
+package com.framework.test.application.config.factory
 
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
