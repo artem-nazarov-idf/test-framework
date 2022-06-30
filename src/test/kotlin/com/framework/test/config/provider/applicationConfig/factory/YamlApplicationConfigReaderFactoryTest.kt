@@ -23,10 +23,10 @@ class YamlApplicationConfigReaderFactoryTest {
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val actualApplicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val actualApplicationConfig = YamlApplicationConfigReaderFactory(fileProvider).getApplicationConfigFromFile()
 
     Assertions.assertEquals("testYaml", actualApplicationConfig.userName)
     Assertions.assertEquals("passYaml", actualApplicationConfig.password)
-    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ruYaml", actualApplicationConfig.host)
+    Assertions.assertEquals("qa-delivery-solva-kz-release.moneyman.ru", actualApplicationConfig.host)
   }
 }

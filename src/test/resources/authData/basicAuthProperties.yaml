@@ -1,11 +1,11 @@
-user: test
-pass: pass
+user: testYaml
+pass: passYaml
 host: qa-delivery-solva-kz-release.moneyman.ru
 crmLoginEndpoint: /secure/new-admin/index.html#/login
 crmStartEndpoint: /secure/new-admin/index.html#
 crmUsers:
   ADMINISTRATOR:
-    login: login
-    password: password
+    login: admmin
+    password: nimda2012
     captcha: 11111
     role: ADMINISTRATOR

@@ -5,7 +5,6 @@ import com.framework.test.config.model.DriverConfig
 interface DriverConfigReader {
   val configFilePath: String
 
-  fun getConfigFromFile(): DriverConfig
+  fun getDriverConfigFromFile(): DriverConfig
 
-  fun setDriverConfig()
 }

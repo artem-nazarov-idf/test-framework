@@ -13,7 +13,7 @@ class JsonApplicationConfigReaderFactory(
   override val configFilePath: String = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.json"
   private val file: File by lazy { fileProvider.getFileFromPath(configFilePath) }
 
-  override fun getConfigFromFile(): ApplicationConfig {
+  override fun getApplicationConfigFromFile(): ApplicationConfig {
     val mapper = jacksonObjectMapper()
     return mapper.readValue(file)
   }

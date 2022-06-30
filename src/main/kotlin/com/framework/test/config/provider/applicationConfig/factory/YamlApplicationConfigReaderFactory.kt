@@ -14,7 +14,7 @@ class YamlApplicationConfigReaderFactory(
   override val configFilePath: String = "authData/${FileNames.BASIC_AUTH_FILE_NAME.value}.yaml"
   private val file: File by lazy { fileProvider.getFileFromPath(configFilePath) }
 
-  override fun getConfigFromFile(): ApplicationConfig {
+  override fun getApplicationConfigFromFile(): ApplicationConfig {
     val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules() // worksWithJsonToo
     return mapper.readValue(file)
   }
