@@ -3,9 +3,9 @@ package com.framework.test.config.provider.applicationConfig.factory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.framework.test.config.model.ApplicationConfig
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
+import com.framework.test.model.ApplicationConfig
 import java.io.File
 
 class YamlApplicationConfigReaderFactory(

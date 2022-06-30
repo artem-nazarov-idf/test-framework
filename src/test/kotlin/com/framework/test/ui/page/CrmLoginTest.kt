@@ -1,4 +1,4 @@
-package com.framework.test.ui
+package com.framework.test.ui.page
 
 import com.framework.test.ui.page.crm.CrmAdminHomePage
 import com.framework.test.ui.page.crm.CrmLoginPage

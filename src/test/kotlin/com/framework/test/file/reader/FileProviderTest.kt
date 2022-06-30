@@ -1,6 +1,5 @@
-package com.framework.test.config.file.reader
+package com.framework.test.file.reader
 
-import com.framework.test.file.reader.FileProvider
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource

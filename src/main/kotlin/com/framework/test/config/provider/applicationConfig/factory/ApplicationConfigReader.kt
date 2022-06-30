@@ -1,6 +1,6 @@
 package com.framework.test.config.provider.applicationConfig.factory
 
-import com.framework.test.config.model.ApplicationConfig
+import com.framework.test.model.ApplicationConfig
 
 interface ApplicationConfigReader {
   val configFilePath: String
