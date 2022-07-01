@@ -1,9 +1,9 @@
 package com.framework.test.constants
 
 enum class BrowserType(val value: String) {
-  CHROME("chrome"), FIREFOX("firefox");
+  CHROME("chrome"), FIREFOX("firefox"), REMOTE("remote");
 
   companion object {
-    fun from(search: String): BrowserType? = values().find { it.value == search }
+    fun getBrowserTypeByName(search: String): BrowserType? = values().find { it.value == search }
   }
 }

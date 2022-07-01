@@ -1,10 +1,9 @@
 package com.framework.test.model
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonInclude
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 data class DriverConfig(
-  var browserSize: String
+  var browser: String,
+  var browserSize: String,
+  val gridNodIdName: String,
+  val webdriverPort: String,
+  val webdriverHost: String
 )

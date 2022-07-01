@@ -8,7 +8,7 @@ import com.framework.test.file.reader.FileProvider
 import com.framework.test.model.DriverConfig
 import java.io.File
 
-class DriverConfigProvider() {
+class DriverConfigProvider {
   private val configFilePath: String = "driver/${FileNames.DEFAULT_DRIVER_CONFIG.value}.yaml"
   private val file: File by lazy { FileProvider().getFileFromPath(configFilePath) }
 

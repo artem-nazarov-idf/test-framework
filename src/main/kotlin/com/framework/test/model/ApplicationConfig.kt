@@ -1,9 +1,7 @@
 package com.framework.test.model
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class ApplicationConfig(
   @JsonProperty("user")
   var userName: String?,
@@ -15,13 +13,11 @@ data class ApplicationConfig(
   var crmUsers: CRMUsers?
 )
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class CRMUsers(
   @JsonProperty("ADMINISTRATOR")
   var administrator: Administrator?
 )
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class Administrator(
   var login: String?,
   var password: String?,
