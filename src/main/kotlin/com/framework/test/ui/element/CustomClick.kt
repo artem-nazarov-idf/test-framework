@@ -8,7 +8,7 @@ object CustomClick : Logging {
   fun clickButton(element: SelenideElement) {
     logger.info("Click button: ${element.text()}")
     element
-      .shouldBe(Condition.visible, Condition.enabled)
+      .shouldBe(Condition.enabled)
       .click()
   }
 }
