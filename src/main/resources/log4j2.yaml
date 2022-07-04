@@ -6,7 +6,7 @@ Configuration:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
-        Pattern: "%highlight{%d{yyyy:MM:dd HH:mm:ss.SSS}[%-5level][%-10t]%10.10logger{1.} : %msg}%xEx%n"
+        Pattern: "%highlight{%d{yyyy:MM:dd HH:mm:ss.SSS}[%-5level][%-10t]%C{1} : %msg}%xEx%n"
 
   Loggers:
     Root:

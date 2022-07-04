@@ -7,7 +7,7 @@ import com.framework.test.ui.page.BasePage
 import org.apache.logging.log4j.kotlin.Logging
 
 class CrmAdminHomePage : Logging, BasePage() {
-  override val urlPage = "х.з не работает пока"
+  override val urlPage = "/secure/new-admin/index.html#"
 
   private val mainNavDropdown: SelenideElement = `$`("#mainNav")
 
