@@ -7,7 +7,7 @@ import org.apache.logging.log4j.kotlin.Logging
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 
-abstract class BaseTest : Logging {
+abstract class BaseUITest : Logging {
   @BeforeAll
   fun setUp() {
     WebDriverConfigSetterFactory().setDriverConfigFactory().setDriverConfig()

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CrmLoginTest : BaseTest() {
+class CrmLoginTest : BaseUITest() {
   val applicationConfig: ApplicationConfig =
     ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
 
