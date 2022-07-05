@@ -7,7 +7,7 @@ import org.apache.logging.log4j.kotlin.Logging
 object CustomInput : Logging {
 
   fun setInputField(element: SelenideElement, value: String?) {
-    logger.info("Set Input ${element.name()} value [$value]")
+    logger.info("Set Input element value [$value]")
     element
       .shouldBe(Condition.visible, Condition.enabled)
       .setValue(value)

@@ -1,9 +1,13 @@
 package com.framework.test.model
 
+import com.framework.test.constants.BrowserType
+import com.framework.test.constants.DriverType
+
 data class DriverConfig(
-  var browser: String,
+  var browser: BrowserType,
+  var driverType: DriverType,
   var browserSize: String,
   val gridNodIdName: String,
   val webdriverPort: String,
-  val webdriverHost: String
+  val localhost: String
 )

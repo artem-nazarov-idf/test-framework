@@ -19,4 +19,3 @@ class YamlApplicationConfigReaderFactory(
     return mapper.readValue(file)
   }
 }
-

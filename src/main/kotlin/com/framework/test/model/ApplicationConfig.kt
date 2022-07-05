@@ -11,11 +11,15 @@ data class ApplicationConfig(
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
   var crmUsers: CRMUsers?
-)
+) {
+  fun getBaseUrl(): String {
+    return "https://$host"
+  }
+}
 
 data class CRMUsers(
   @JsonProperty("ADMINISTRATOR")
-  var administrator: Administrator?
+  var administrator: Administrator
 )
 
 data class Administrator(

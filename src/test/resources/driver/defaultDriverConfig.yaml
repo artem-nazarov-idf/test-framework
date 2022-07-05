@@ -1,5 +1,6 @@
-browser: CHROME
+browser: FIREFOX
+driverType: LOCAL
 browserSize: 1920x1080
 gridNodIdName: 123456
 webdriverPort: 4444
-webdriverHost: 1234
+localhost: 1234
