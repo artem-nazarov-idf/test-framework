@@ -9,10 +9,8 @@ class FirefoxDriverConfigSetterFactory(
   driverConfig: DriverConfig
 ) : DefaultDriverConfigSetterFactory(driverConfig) {
 
-  override fun setDriverConfig() {
+  override fun setSpecificDriverConfig() {
     WebDriverManager.firefoxdriver().setup()
-
-    Configuration.browser = BrowserType.FIREFOX.value
-    setDefaultDriverConfig()
+    Configuration.browser = BrowserType.FIREFOX.browserName
   }
 }

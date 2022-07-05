@@ -13,7 +13,7 @@ class DriverConfigProvider {
   private val file: File by lazy { FileProvider().getFileFromPath(configFilePath) }
 
   fun getDriverConfigFromFile(): DriverConfig {
-    val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules() // worksWithJsonToo
+    val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules()
     return mapper.readValue(file)
   }
 }

@@ -8,7 +8,9 @@ import com.framework.test.ui.driver.factory.WebDriverConfigSetterFactory
 import org.apache.logging.log4j.kotlin.Logging
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.TestInstance
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class BaseTest : Logging {
   protected val applicationConfig: ApplicationConfig =
     ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()

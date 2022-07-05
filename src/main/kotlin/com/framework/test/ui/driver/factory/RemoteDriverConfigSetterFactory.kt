@@ -10,13 +10,14 @@ class RemoteDriverConfigSetterFactory(
 ) : DefaultDriverConfigSetterFactory(driverConfig) {
 
   private fun getDefaultCapabilities(): DesiredCapabilities {
-    val caps = DesiredCapabilities()
-    caps.setCapability("applicationName", driverConfig.gridNodIdName)
-    caps.setCapability("enableVNC", true)
+    val caps = DesiredCapabilities().apply {
+      setCapability("applicationName", driverConfig.gridNodIdName)
+      setCapability("enableVNC", true)
+    }
     return caps
   }
 
-  override fun setDriverConfig() {
+  override fun setSpecificDriverConfig() {
     Configuration.remote = "http://${driverConfig.localhost}:${driverConfig.webdriverPort}/wd/hub"
     Configuration.browserCapabilities.merge(getDefaultCapabilities())
 

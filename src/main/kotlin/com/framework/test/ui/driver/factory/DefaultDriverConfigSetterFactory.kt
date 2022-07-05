@@ -5,7 +5,14 @@ import com.framework.test.model.DriverConfig
 
 abstract class DefaultDriverConfigSetterFactory(private val driverConfig: DriverConfig) : DriverConfigSetter {
 
-  protected fun setDefaultDriverConfig() {
+  private fun setDefaultDriverConfig() {
     Configuration.browserSize = driverConfig.browserSize
   }
+
+  override fun setDriverConfig() {
+    setSpecificDriverConfig()
+    setDefaultDriverConfig()
+  }
+
+  abstract fun setSpecificDriverConfig()
 }

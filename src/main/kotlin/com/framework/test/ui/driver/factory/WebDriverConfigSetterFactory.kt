@@ -8,15 +8,21 @@ import com.framework.test.ui.driver.provider.DriverConfigProvider
 class WebDriverConfigSetterFactory(
   private val driverConfig: DriverConfig = DriverConfigProvider().getDriverConfigFromFile()
 ) {
-  private val browserNameFromFile: BrowserType = driverConfig.browser
   private val defaultBrowserType: BrowserType by lazy {
     System.getProperty("config.browser.type")?.let {
-      BrowserType.getBrowserTypeByName(it)
-    } ?: browserNameFromFile
+      BrowserType.valueOf(it)
+    } ?: driverConfig.browser
+  }
+  private val defaultDriverType: DriverType by lazy {
+    System.getProperty("config.browser.type")?.let {
+      DriverType.valueOf(it)
+    } ?: driverConfig.driverType
   }
 
-  fun setDriverConfigFactory(driverType: DriverType = DriverType.LOCAL, browserType: BrowserType = defaultBrowserType):
-      DriverConfigSetter {
+  fun setDriverConfigFactory(
+    driverType: DriverType = defaultDriverType,
+    browserType: BrowserType = defaultBrowserType
+  ): DriverConfigSetter {
     return when (driverType) {
       DriverType.REMOTE -> RemoteDriverConfigSetterFactory(driverConfig)
       DriverType.LOCAL -> {
