@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.application.config.factory
 
 import com.framework.test.constants.FileType
 import org.junit.jupiter.api.Assertions
@@ -31,19 +31,19 @@ class ApplicationConfigReaderFactoryTest {
     val actualApplicationConfigFromDefault = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
-      actualApplicationConfigFromDefault is JsonApplicationConfigReaderFactory,
-      "config.file.type not is from Json"
+      actualApplicationConfigFromDefault is YamlApplicationConfigReaderFactory,
+      "config.file.type not is from Yaml"
     )
   }
 
   @Test
-  fun `ApplicationConfigReaderFactory use yaml file type when provided file type is yaml from System property`() {
-    System.setProperty("config.file.type", "yaml")
+  fun `ApplicationConfigReaderFactory use json file type when provided file type is json from System property`() {
+    System.setProperty("config.file.type", "json")
     val applicationConfigFromYaml = ApplicationConfigReaderFactory().getAppConfigReaderFactory()
 
     Assertions.assertTrue(
-      applicationConfigFromYaml is YamlApplicationConfigReaderFactory,
-      "config.file.type not is from Yaml"
+      applicationConfigFromYaml is JsonApplicationConfigReaderFactory,
+      "config.file.type not is from json"
     )
 
     System.clearProperty("config.file.type")

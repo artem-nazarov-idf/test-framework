@@ -1,6 +1,15 @@
 {
   "user": "testJson",
-  "prepass": "prepassJson",
   "pass": "passJson",
-  "host": "qa-delivery-solva-kz-release.moneyman.ruJson"
+  "host": "qa-delivery-solva-kz-release.moneyman.ruJson",
+  "crmLoginEndpoint": "/secure/new-admin/index.html#/login",
+  "crmStartEndpoint": "/secure/new-admin/index.html#",
+  "crmUsers": {
+    "ADMINISTRATOR": {
+      "login": "admmin",
+      "password": "test",
+      "captcha": 11111,
+      "role": "ADMINISTRATOR"
+    }
+  }
 }

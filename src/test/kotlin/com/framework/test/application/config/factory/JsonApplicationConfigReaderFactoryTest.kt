@@ -1,4 +1,4 @@
-package com.framework.test.config.provider.factory
+package com.framework.test.application.config.factory
 
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
@@ -23,7 +23,7 @@ class JsonApplicationConfigReaderFactoryTest {
       this.javaClass.classLoader.getResource(configFilePath)?.path.toString()
     )
 
-    val actualApplicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getConfigFromFile()
+    val actualApplicationConfig = JsonApplicationConfigReaderFactory(fileProvider).getApplicationConfigFromFile()
 
     Assertions.assertEquals("testJson", actualApplicationConfig.userName)
     Assertions.assertEquals("passJson", actualApplicationConfig.password)
