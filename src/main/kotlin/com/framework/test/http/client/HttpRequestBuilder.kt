@@ -1,6 +1,5 @@
 package com.framework.test.http.client
 
-import okhttp3.HttpUrl
 import okhttp3.Request
 
 class HttpRequestBuilder(
@@ -11,7 +10,11 @@ class HttpRequestBuilder(
     headers.forEach { (key, value) -> requestBuilder.addHeader(key, value) }
   }
 
-  fun url(url: String): HttpUrl {
-    return HttpRequestBuilder().url(url)
+  fun url(url: String): HttpRequestBuilder {
+    return apply { requestBuilder.url(url) }
+  }
+
+  fun build(): Request {
+    return requestBuilder.build()
   }
 }
