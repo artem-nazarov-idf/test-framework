@@ -1,4 +1,4 @@
-package com.framework.test.http.client.interseptors
+package com.framework.test.http.interseptors
 
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -6,7 +6,7 @@ import org.apache.logging.log4j.kotlin.Logging
 
 class SuccessStatusCodeInterceptor : Interceptor, Logging {
   override fun intercept(chain: Interceptor.Chain): Response {
-    var response: Response = chain.proceed(chain.request())
+    val response: Response = chain.proceed(chain.request())
 
     assert(response.isSuccessful) {
       """
