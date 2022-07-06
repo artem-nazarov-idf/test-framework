@@ -25,6 +25,7 @@ class CustomHttpClient(private val applicationConfig: ApplicationConfig) : MakeR
   ): Response {
     val request = HttpRequestBuilder(applicationConfig)
       .addAllRequestOptions(endpoint, params, headers, cookies)
+      .get()
       .build()
     return client.newCall(request).execute()
   }
