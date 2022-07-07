@@ -8,7 +8,11 @@ import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Response
 
-class CustomHttpClient(private val applicationConfig: ApplicationConfig) : MakeRequest {
+class CustomHttpClient(
+  applicationConfig: ApplicationConfig,
+  private val baseUrl: String = applicationConfig.host!!
+) :
+  HttpClient {
 
   private val client =
     OkHttpClient.Builder()
@@ -23,8 +27,8 @@ class CustomHttpClient(private val applicationConfig: ApplicationConfig) : MakeR
     headers: Map<String, String>,
     cookies: Map<String, String>?
   ): Response {
-    val request = HttpRequestBuilder(applicationConfig)
-      .addAllRequestOptions(endpoint, params, headers, cookies)
+    val request = HttpRequestBuilder(baseUrl)
+      .addListedParametersToRequest(endpoint, params, headers, cookies)
       .get()
       .build()
     return client.newCall(request).execute()
@@ -37,8 +41,8 @@ class CustomHttpClient(private val applicationConfig: ApplicationConfig) : MakeR
     cookies: Map<String, String>?,
     params: Map<String, Any>,
   ): Response {
-    val request = HttpRequestBuilder(applicationConfig)
-      .addAllRequestOptions(endpoint, params, headers, cookies)
+    val request = HttpRequestBuilder(baseUrl)
+      .addListedParametersToRequest(endpoint, params, headers, cookies)
       .post(requestBody)
       .build()
     return client.newCall(request).execute()
@@ -51,8 +55,8 @@ class CustomHttpClient(private val applicationConfig: ApplicationConfig) : MakeR
     cookies: Map<String, String>?,
     params: Map<String, Any>,
   ): Response {
-    val request = HttpRequestBuilder(applicationConfig)
-      .addAllRequestOptions(endpoint, params, headers, cookies)
+    val request = HttpRequestBuilder(baseUrl)
+      .addListedParametersToRequest(endpoint, params, headers, cookies)
       .delete(requestBody)
       .build()
     return client.newCall(request).execute()

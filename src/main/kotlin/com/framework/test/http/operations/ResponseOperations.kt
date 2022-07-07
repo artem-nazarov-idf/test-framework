@@ -1,4 +1,4 @@
-package com.framework.test.api.operations
+package com.framework.test.http.operations
 
 import okhttp3.Response
 import org.apache.logging.log4j.kotlin.Logging

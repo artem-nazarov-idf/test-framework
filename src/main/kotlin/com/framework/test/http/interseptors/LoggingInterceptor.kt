@@ -21,9 +21,17 @@ class LoggingInterceptor : Interceptor, Logging {
     logger.info(
       """|Received response for ${response.request.url}|
       |response heders is [${response.headers}]|
-      |body is [${response.body?.byteString()}]|
       """.trimMargin()
     )
+
+    val responseContentType = response.headers["content-type"]
+
+    if (!responseContentType.isNullOrEmpty() && responseContentType == "application/json")
+      logger.info(
+        "|body is [${response.body?.byteString()}]|"
+      ) else {
+      logger.info("|body contentType is [$responseContentType]")
+    }
 
     return response
   }

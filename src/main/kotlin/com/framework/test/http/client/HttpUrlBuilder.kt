@@ -1,21 +1,27 @@
 package com.framework.test.http.client
 
-import com.framework.test.model.ApplicationConfig
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
 class HttpUrlBuilder(
-  applicationConfig: ApplicationConfig
+  private val baseUrl: String
 ) {
-  private val baseUrl = "https://${applicationConfig.host}"
   private val endpoints: MutableList<String> = mutableListOf()
   private val queryParameters: MutableMap<String, Any> = mutableMapOf()
 
   fun build(): HttpUrl {
-    val builder = baseUrl.toHttpUrl().newBuilder()
+    val builder = getHttpsUrl().toHttpUrl().newBuilder()
     endpoints.forEach { endpoint -> builder.addPathSegments(endpoint.removePrefix("/")) }
     queryParameters.forEach { (key, value) -> builder.addQueryParameter(key, value.toString()) }
     return builder.build()
+  }
+
+  private fun getHttpsUrl(): String {
+    return if (baseUrl.startsWith("http")) {
+      baseUrl
+    } else {
+      "https://$baseUrl"
+    }
   }
 
   fun addEndpoint(endpoint: String) = apply { endpoints.add(endpoint) }

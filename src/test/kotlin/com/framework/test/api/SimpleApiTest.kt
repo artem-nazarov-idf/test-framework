@@ -1,7 +1,8 @@
 package com.framework.test.api
 
-import com.framework.test.api.verifiers.ResponseNotEmptyVerifier
 import com.framework.test.http.client.CustomHttpClient
+import com.framework.test.http.verifiers.ResponseNotEmptyVerifier
+
 import okhttp3.Response
 import org.junit.jupiter.api.Test
 

@@ -4,7 +4,7 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.internal.EMPTY_REQUEST
 
-interface MakeRequest {
+interface HttpClient {
   fun get(
     endpoint: String,
     params: Map<String, Any> = emptyMap(),
