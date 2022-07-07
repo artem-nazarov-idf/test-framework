@@ -1,10 +1,6 @@
 package com.framework.test.http.client
 
-import com.framework.test.http.interseptors.BasicAuthInterceptor
-import com.framework.test.http.interseptors.LoggingInterceptor
-import com.framework.test.http.interseptors.SuccessStatusCodeInterceptor
 import com.framework.test.model.ApplicationConfig
-import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Response
 
@@ -14,12 +10,7 @@ class CustomHttpClient(
 ) :
   HttpClient {
 
-  private val client =
-    OkHttpClient.Builder()
-      .addInterceptor(BasicAuthInterceptor(applicationConfig.userName!!, applicationConfig.password!!))
-      .addInterceptor(LoggingInterceptor())
-      .addInterceptor(SuccessStatusCodeInterceptor())
-      .build()
+  private val client = HttpClientBuilder(applicationConfig).buildDefaultClient()
 
   override fun get(
     endpoint: String,
