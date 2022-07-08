@@ -1,5 +1,5 @@
-user: testYaml
-pass: passYaml
+user: moneyman
+pass: 1005
 host: qa-delivery-solva-kz-master.moneyman.ru #qa-delivery-solva-kz-release.moneyman.ru
 crmLoginEndpoint: /secure/new-admin/index.html#/login
 crmStartEndpoint: /secure/new-admin/index.html#

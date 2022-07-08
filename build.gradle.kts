@@ -19,6 +19,7 @@ val selenideVersion: String by project
 val log4jSlf4jVersion: String by project
 val log4jApiKotlinVersion: String by project
 val okhttpVersion: String by project
+val wireMockVersion: String by project
 
 dependencies {
   implementation("org.apache.logging.log4j:log4j-api-kotlin:$log4jApiKotlinVersion")
@@ -28,6 +29,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
   implementation("org.junit.jupiter:junit-jupiter")
   implementation(platform("org.junit:junit-bom:$junitBomVersion"))
+  implementation("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")
   testImplementation("io.mockk:mockk:$mockkVersion")
   testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:$log4jSlf4jVersion")
 }

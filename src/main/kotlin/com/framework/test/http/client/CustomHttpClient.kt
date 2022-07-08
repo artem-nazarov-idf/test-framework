@@ -7,8 +7,7 @@ import okhttp3.Response
 class CustomHttpClient(
   applicationConfig: ApplicationConfig,
   private val baseUrl: String = applicationConfig.host!!
-) :
-  HttpClient {
+) : HttpClient {
 
   private val client = HttpClientBuilder(applicationConfig).buildDefaultClient()
 

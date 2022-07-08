@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions
 class ResponseNotEmptyVerifier {
   fun verifyResponseNotEmptyBody(response: Response) {
     Assertions.assertTrue(!response.body.toString().isNullOrBlank(), "response body not empty")
+  // TODO: 07.07.2022  проверить это на стабе.
   }
 
   fun verifyResponseNotEmptyCookieValue(response: Response, cookieName: String) {
