@@ -1,6 +1,6 @@
 package com.framework.test.http.verifiers
 
-import com.framework.test.http.operations.ResponseOperations
+import com.framework.test.http.converters.CookieConverter
 import okhttp3.Response
 import org.junit.jupiter.api.Assertions
 
@@ -11,7 +11,7 @@ class ResponseNotEmptyVerifier {
   }
 
   fun verifyResponseNotEmptyCookieValue(response: Response, cookieName: String) {
-    val cookieValue: String = ResponseOperations().getCookieValueFromResponse(response, cookieName)
+    val cookieValue: String = CookieConverter().getCookieValueFromResponse(response, cookieName)
     Assertions.assertTrue(!cookieValue.isNullOrBlank(), "cookie [$cookieName] value is empty")
   }
 }
