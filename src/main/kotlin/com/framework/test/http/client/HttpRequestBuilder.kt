@@ -12,6 +12,9 @@ class HttpRequestBuilder(
   fun get() = apply { requestBuilder.get() }
   fun post(body: RequestBody) = apply { requestBuilder.post(body) }
   fun delete(body: RequestBody?) = apply { requestBuilder.delete(body) }
+  fun build(): Request {
+    return requestBuilder.url(urlBuilder.build()).build()
+  }
 
   fun addListedParametersToRequest(
     endpoint: String,
@@ -38,9 +41,5 @@ class HttpRequestBuilder(
         .joinToString(separator = ";", postfix = ";")
       requestBuilder.addHeader("Cookie", cookieString)
     }
-  }
-
-  fun build(): Request {
-    return requestBuilder.url(urlBuilder.build()).build()
   }
 }

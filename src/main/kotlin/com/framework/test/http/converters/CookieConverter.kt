@@ -1,9 +1,9 @@
-package com.framework.test.http.operations
+package com.framework.test.http.converters
 
 import okhttp3.Response
 import org.apache.logging.log4j.kotlin.Logging
 
-class ResponseOperations : Logging {
+class CookieConverter : Logging {
   fun getCookieValueFromResponse(response: Response, nameCookie: String): String {
     val cookies: String? = response.headers["set-cookie"]
     if (cookies.isNullOrEmpty()) {
