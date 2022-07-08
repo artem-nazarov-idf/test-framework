@@ -5,13 +5,12 @@ import com.framework.test.application.config.factory.ApplicationConfigReaderFact
 import com.framework.test.model.ApplicationConfig
 import com.framework.test.ui.browser.BrowserConfig
 import com.framework.test.ui.driver.factory.WebDriverConfigSetterFactory
-import org.apache.logging.log4j.kotlin.Logging
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class BaseTest : Logging {
+abstract class BaseUITest {
   protected val applicationConfig: ApplicationConfig =
     ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
 
