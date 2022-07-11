@@ -23,7 +23,7 @@ class SimpleApiTest : ApiBaseTest() {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = ["http://localhost:8081", "https://qa-delivery-solva-kz-master.moneyman.ru"])
+  @ValueSource(strings = ["http://localhost:8081", "https://qa-delivery-solva-kz-release.moneyman.ru"])
   fun `success login in crm system with stub and without stub`(baseUrl: String) {
     val staticMock = CrmSignInMock()
     val endpoint = staticMock.endpoint

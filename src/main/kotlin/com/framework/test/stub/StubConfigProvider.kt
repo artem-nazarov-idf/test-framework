@@ -12,7 +12,7 @@ class StubConfigProvider {
   private val configFilePath: String = "stub/config/${FileNames.DEFAULT_STUB_CONFIG.value}.yaml"
   private val file: File by lazy { FileProvider().getFileFromPath(configFilePath) }
 
-  fun getDriverConfigFromFile(): StubConfig { // todo отрефачить это всё.
+  fun getStubConfigFromFile(): StubConfig {
     val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules()
     return mapper.readValue(file)
   }

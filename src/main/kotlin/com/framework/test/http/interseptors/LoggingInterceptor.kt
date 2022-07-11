@@ -4,20 +4,16 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
-import okio.Buffer
 import org.apache.logging.log4j.kotlin.Logging
 
 class LoggingInterceptor : Interceptor, Logging {
   override fun intercept(chain: Interceptor.Chain): Response {
     val request: Request = chain.request()
 
-    val requestBuffer = Buffer()
-    request.body!!.writeTo(requestBuffer)
-
     logger.info(
       """|Sending request ${request.url}
       |heders request is [${request.headers}]
-      |body request is [${requestBuffer.readUtf8()}]
+      |body request is [${request.body}]
       """.trimMargin()
     )
 

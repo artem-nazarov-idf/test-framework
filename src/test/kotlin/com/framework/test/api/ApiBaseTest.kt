@@ -15,7 +15,7 @@ import org.junit.jupiter.api.TestInstance
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class ApiBaseTest {
   private lateinit var wireMockServer: WireMockServer
-  private val stubServiceConfig: StubConfig = StubConfigProvider().getDriverConfigFromFile()
+  private val stubServiceConfig: StubConfig = StubConfigProvider().getStubConfigFromFile()
   protected val applicationConfig: ApplicationConfig =
     ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
 
