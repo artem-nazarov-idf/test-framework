@@ -3,4 +3,4 @@ driverType: LOCAL
 browserSize: 1920x1080
 gridNodIdName: 123456
 webdriverPort: 4444
-localhost: 1234
+localhost: 1234s

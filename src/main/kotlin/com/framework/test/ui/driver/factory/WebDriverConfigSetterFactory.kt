@@ -2,7 +2,7 @@ package com.framework.test.ui.driver.factory
 
 import com.framework.test.constants.BrowserType
 import com.framework.test.constants.DriverType
-import com.framework.test.model.DriverConfig
+import com.framework.test.model.config.DriverConfig
 import com.framework.test.ui.driver.provider.DriverConfigProvider
 
 class WebDriverConfigSetterFactory(

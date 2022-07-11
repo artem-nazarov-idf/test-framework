@@ -3,16 +3,21 @@ package com.framework.test.http.interseptors
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import okhttp3.ResponseBody.Companion.toResponseBody
+import okio.Buffer
 import org.apache.logging.log4j.kotlin.Logging
 
 class LoggingInterceptor : Interceptor, Logging {
   override fun intercept(chain: Interceptor.Chain): Response {
     val request: Request = chain.request()
 
+    val requestBuffer = Buffer()
+    request.body!!.writeTo(requestBuffer)
+
     logger.info(
       """|Sending request ${request.url}
-      |heders is [${request.headers}]
-      |body is [${request.body}]
+      |heders request is [${request.headers}]
+      |body request is [${requestBuffer.readUtf8()}]
       """.trimMargin()
     )
 
@@ -25,14 +30,15 @@ class LoggingInterceptor : Interceptor, Logging {
     )
 
     val responseContentType = response.headers["content-type"]
+    val responseContentTypeBody = response.body?.contentType()
 
-    if (!responseContentType.isNullOrEmpty() && responseContentType == "application/json")
-      logger.info(
-        "|body is [${response.body?.byteString()}]|"
-      ) else {
-      logger.info("|body contentType is [$responseContentType]")
+    return if (!responseContentType.isNullOrEmpty() && responseContentType.contains("application/json")) {
+      val stringBody = response.body?.string()
+      logger.info("|body is [$stringBody]|")
+      response.newBuilder().body(stringBody?.toResponseBody(responseContentTypeBody)).build()
+    } else {
+      logger.info("|body contentType is [${responseContentType}]")
+      response
     }
-
-    return response
   }
 }

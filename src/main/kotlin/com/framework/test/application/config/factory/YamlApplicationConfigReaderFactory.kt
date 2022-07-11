@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
-import com.framework.test.model.ApplicationConfig
+import com.framework.test.model.config.ApplicationConfig
 import java.io.File
 
 class YamlApplicationConfigReaderFactory(
@@ -15,7 +15,7 @@ class YamlApplicationConfigReaderFactory(
   private val file: File by lazy { fileProvider.getFileFromPath(configFilePath) }
 
   override fun getApplicationConfigFromFile(): ApplicationConfig {
-    val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules() // worksWithJsonToo
+    val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules()
     return mapper.readValue(file)
   }
 }

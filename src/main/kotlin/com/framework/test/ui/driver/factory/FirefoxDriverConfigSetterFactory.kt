@@ -2,7 +2,7 @@ package com.framework.test.ui.driver.factory
 
 import com.codeborne.selenide.Configuration
 import com.framework.test.constants.BrowserType
-import com.framework.test.model.DriverConfig
+import com.framework.test.model.config.DriverConfig
 import io.github.bonigarcia.wdm.WebDriverManager
 
 class FirefoxDriverConfigSetterFactory(

@@ -1,18 +1,14 @@
 package com.framework.test.api
 
+import com.framework.test.api.crm.AdminSteps
 import com.framework.test.http.client.CustomHttpClient
 import com.framework.test.http.verifiers.ResponseNotEmptyVerifier
-import com.github.tomakehurst.wiremock.client.WireMock
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import com.github.tomakehurst.wiremock.client.WireMock.get
-import com.github.tomakehurst.wiremock.client.WireMock.stubFor
-import com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching
-import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo
-import com.github.tomakehurst.wiremock.junit5.WireMockTest
+import com.framework.test.stub.config.CrmSignInMock
 import okhttp3.Response
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
-@WireMockTest(httpPort = 8080)
 class SimpleApiTest : ApiBaseTest() {
 
   @Test
@@ -26,46 +22,18 @@ class SimpleApiTest : ApiBaseTest() {
     }
   }
 
-  @Test
-  fun `success login in crm system with wrong parameters and stub`(wmRuntimeInfo: WireMockRuntimeInfo) {
-    val endpoint = "/secure/rest/sign/in"
+  @ParameterizedTest
+  @ValueSource(strings = ["http://localhost:8081", "https://qa-delivery-solva-kz-master.moneyman.ru"])
+  fun `success login in crm system with stub and without stub`(baseUrl: String) {
+    val staticMock = CrmSignInMock()
+    val endpoint = staticMock.endpoint
 
-    stubFor(
-      get(urlPathMatching("/baeldung/.*"))
-        .willReturn(
-          aResponse()
-            .withStatus(200)
-            .withHeader("Content-Type", "application/json")
-            .withBody("\"testing-library\": \"WireMock\"")
-        )
-    );
-
-//    stubFor(
-//      post(urlEqualTo(endpoint)).willReturn(aResponse().withBody("Welcome to Baeldung!")))
-
-    val wireMock: WireMock = wmRuntimeInfo.wireMock
-    wireMock.register(
-      get(urlPathMatching("/baeldung/.*"))
-        .willReturn(
-          aResponse()
-            .withStatus(200)
-            .withHeader("Content-Type", "application/json")
-            .withBody("\"testing-library\": \"WireMock\"")
-        )
-    )
-
-//    val headers: Map<String, String> = mapOf("content-type" to "application/json;charset=UTF-8")
-//    val body = "{\"login\":\"admmin\",\"password\":\"nimda201\",\"captcha\":\"11111\",\"remember\":false}"
-//      .toRequestBody()
-//    val actualResponse: Response = CustomHttpClient(applicationConfig).post(endpoint, headers,
-//      body)
-
-    val actualResponse: Response = CustomHttpClient(applicationConfig)
-      .get("/baeldung/wiremock")
-
-    ResponseNotEmptyVerifier().apply {
-      verifyResponseNotEmptyBody(actualResponse)
-      verifyResponseNotEmptyCookieValue(actualResponse, "JSESSIONID")
+    with(applicationConfig.crmUsers?.administrator!!) {
+      AdminSteps(applicationConfig, endpoint).apply {
+        with(loginCrmWithData(login!!, password!!, captcha!!, baseUrl)) {
+          verifyResponseSuccess(this)
+        }
+      }
     }
   }
 }

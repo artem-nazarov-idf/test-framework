@@ -1,6 +1,6 @@
 package com.framework.test.http.client
 
-import com.framework.test.model.ApplicationConfig
+import com.framework.test.model.config.ApplicationConfig
 import okhttp3.RequestBody
 import okhttp3.Response
 
