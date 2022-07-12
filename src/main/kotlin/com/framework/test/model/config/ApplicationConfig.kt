@@ -10,7 +10,8 @@ data class ApplicationConfig(
   var host: String?,
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
-  var crmUsers: CRMUsers?
+  var crmUsers: CRMUsers?,
+  var stub: StubConfig
 ) {
   fun getBaseUrl(): String {
     return "https://$host"
@@ -27,4 +28,9 @@ data class Administrator(
   var password: String?,
   var captcha: String?,
   var role: String?
+)
+
+data class StubConfig(
+  var host: String,
+  var port: Int
 )
