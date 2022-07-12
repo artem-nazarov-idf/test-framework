@@ -11,7 +11,6 @@ import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo
 
 class WireMockService(
   private val applicationConfig: ApplicationConfig,
-//  private val stubDataClass: MockData,
   wireMockServer: WireMockServer
 ) :
   StubOperation {
