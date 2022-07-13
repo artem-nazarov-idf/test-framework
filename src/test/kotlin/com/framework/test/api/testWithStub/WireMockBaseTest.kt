@@ -13,11 +13,15 @@ abstract class WireMockBaseTest : ApiBaseTest() {
   private val wireMockServer: WireMockServer by lazy {
     WireMockServer(WireMockConfiguration.options().port(applicationConfig.stub.port))
   }
-  protected val wireMockService: WireMockService by lazy { WireMockService(applicationConfig, wireMockServer) }
+  protected val wireMockService: WireMockService by lazy { WireMockService(wireMockServer) }
 
   @BeforeAll
-  fun runWireMock() = wireMockServer.start()
+  fun runWireMock() {
+    wireMockServer.start()
+  }
 
   @AfterAll
-  fun stopWireMock() = wireMockServer.stop()
+  fun stopWireMock() {
+    wireMockServer.stop()
+  }
 }

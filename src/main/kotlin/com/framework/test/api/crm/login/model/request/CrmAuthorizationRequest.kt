@@ -8,4 +8,4 @@ data class CrmAuthorizationRequest(
   val password: String,
   val captcha: String,
   val remember: Boolean
-) {}
+)
