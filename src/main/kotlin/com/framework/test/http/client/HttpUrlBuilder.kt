@@ -24,6 +24,6 @@ class HttpUrlBuilder(
     }
   }
 
-  fun addEndpoint(endpoint: String) = apply { endpoints.add(endpoint) }
-  fun addParameters(parameters: Map<String, Any>) = apply { queryParameters.putAll(parameters) }
+  fun addEndpoint(endpoint: String): HttpUrlBuilder = apply { endpoints.add(endpoint) }
+  fun addParameters(parameters: Map<String, Any>): HttpUrlBuilder = apply { queryParameters.putAll(parameters) }
 }

@@ -16,9 +16,6 @@ class CrmAuthorizationController(private val applicationConfig: ApplicationConfi
       .addHeader("content-type", "application/json;charset=UTF-8")
       .addRequestBody(login, password, captcha, remember)
 
-//    val headers = CrmAuthorizationRequestBuilder().addHeader("content-type",
-//        "application/json;charset=UTF-8")
-//    val body = CrmAuthorizationRequestBuilder().buildRequestBody(login, password, captcha, remember)
     val response: Response = CustomHttpClient(applicationConfig, baseUrl).post(endpoint, request.headers, request.body)
     return parseBodyToCrmUserInfoResponse(response)
   }

@@ -19,9 +19,11 @@ class StubResponseBuilder(
       .addBodyFromFile(mockData.filePath)
   }
 
-  private fun addStatus(status: Int) = apply { responseDefinitionBuilder.withStatus(status) }
-  private fun addHeaders(headers: Map<String, String>?) = apply {
+  private fun addStatus(status: Int): StubResponseBuilder = apply { responseDefinitionBuilder.withStatus(status) }
+  private fun addHeaders(headers: Map<String, String>?): StubResponseBuilder = apply {
     headers?.forEach { (key, value) -> responseDefinitionBuilder.withHeader(key, value) }
   }
-  private fun addBodyFromFile(filePath: String) = apply { responseDefinitionBuilder.withBodyFile(filePath) }
+
+  private fun addBodyFromFile(filePath: String): StubResponseBuilder =
+    apply { responseDefinitionBuilder.withBodyFile(filePath) }
 }

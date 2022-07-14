@@ -12,17 +12,17 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
 
   @BeforeEach
   fun setStub() {
-    wireMockService.addStub(crmSignInMock)
-    wireMockService.verifyStub(crmSignInMock)
+    stubController.addStub(crmSignInMock)
+    stubController.verifyStub(crmSignInMock)
   }
 
   @AfterEach
   fun deleteStub() {
-    wireMockService.deleteStub(crmSignInMock)
+    stubController.deleteStub(crmSignInMock)
   }
 
   @ParameterizedTest
-  @ValueSource(strings = ["http://127.0.0.1:8081", "https://qa-delivery-solva-kz-master.moneyman.ru"])
+  @ValueSource(strings = ["http://127.0.0.1:8080", "https://qa-delivery-solva-kz-master.moneyman.ru"])
   fun `success login in crm system with stub and without stub`(baseUrl: String) {
     val endpoint = crmSignInMock.endpoint
 

@@ -2,28 +2,26 @@ package com.framework.test.stub.service
 
 import com.framework.test.stub.builder.StubMappingBuilder
 import com.framework.test.stub.config.MockData
-import com.github.tomakehurst.wiremock.WireMockServer
+import com.github.tomakehurst.wiremock.client.MappingBuilder
+import com.github.tomakehurst.wiremock.client.WireMock
+import com.github.tomakehurst.wiremock.stubbing.StubMapping
 
 class WireMockService(
-  private val wireMockServer: WireMockServer
+  private val wireMockClient: WireMock
 ) : StubOperation {
 
   override fun addStub(stubDataClass: MockData) {
-    stubDataClass.id = wireMockServer.stubFor(
-      StubMappingBuilder(stubDataClass)
-        .setRequestMethodFromClass()
-        .setPriorityFromClass()
-        .setResponseFromClass().build()
-    ).id
+    val mappingBuilderFromClass: MappingBuilder = StubMappingBuilder(stubDataClass).buildStubMappingFromClass()
+    stubDataClass.id = wireMockClient.register(mappingBuilderFromClass).id
   }
 
   override fun deleteStub(stubDataClass: MockData) {
-    val stuMapping = wireMockServer.getSingleStubMapping(stubDataClass.id)
-    wireMockServer.removeStub(stuMapping)
+    val stuMapping: StubMapping = wireMockClient.getStubMapping(stubDataClass.id).item
+    wireMockClient.removeStubMapping(stuMapping)
   }
 
   override fun verifyStub(stubDataClass: MockData) {
-    val actualMappingItemFromServer: String = wireMockServer.getSingleStubMapping(stubDataClass.id)?.id.toString()
+    val actualMappingItemFromServer: String = wireMockClient.getStubMapping(stubDataClass.id).item?.id.toString()
     assert(actualMappingItemFromServer != "null") {
       "Mapping not found in actual wire mock service configuration"
     }

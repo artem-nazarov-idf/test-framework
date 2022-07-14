@@ -10,9 +10,14 @@ class CrmAuthorizationRequestBuilder {
   val headers: MutableMap<String, String> = mutableMapOf()
   lateinit var body: RequestBody
 
-  fun addHeader(key: String, value: String) = apply { headers[key] = value }
+  fun addHeader(key: String, value: String): CrmAuthorizationRequestBuilder = apply { headers[key] = value }
 
-  fun addRequestBody(login: String, password: String, captcha: String, remember: Boolean) = apply {
+  fun addRequestBody(
+    login: String,
+    password: String,
+    captcha: String,
+    remember: Boolean
+  ): CrmAuthorizationRequestBuilder = apply {
     val crmAuthorizationRequest = CrmAuthorizationRequest(
       login = login,
       password = password,
