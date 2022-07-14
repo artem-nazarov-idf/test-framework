@@ -25,5 +25,6 @@ class StubMappingBuilder(
     )
   }
 
-  fun build(): MappingBuilder = stubMapping
+  fun build(): MappingBuilder = stubMapping // todo плохо, можно вернуть в setResponseFromClass и надо завернуть в
+// общую функцию.
 }
