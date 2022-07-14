@@ -21,8 +21,10 @@ class WireMockService(
   }
 
   override fun verifyStub(stubDataClass: MockData) {
-    val actualMappingItemFromServer: String = wireMockClient.getStubMapping(stubDataClass.id).item?.id.toString()
-    assert(actualMappingItemFromServer != "null") {
+    val allMapping = wireMockClient.allStubMappings().mappings
+    val actualWireMockStubsId = allMapping.map { it.id }
+
+    assert(actualWireMockStubsId.contains(stubDataClass.id)) {
       "Mapping not found in actual wire mock service configuration"
     }
   }

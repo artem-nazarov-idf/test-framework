@@ -2,7 +2,6 @@ package com.framework.test.api.testWithStub
 
 import com.framework.test.api.ApiBaseTest
 import com.framework.test.stub.controller.StubController
-import com.framework.test.stub.service.WireMockService
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
@@ -16,8 +15,7 @@ abstract class WireMockBaseTest : ApiBaseTest() {
     WireMockServer(WireMockConfiguration.options().port(applicationConfig.stub.port))
   }
   private val wireMockClient: WireMock by lazy { WireMock(applicationConfig.stub.host, applicationConfig.stub.port) }
-  private val wireMockService: WireMockService by lazy { WireMockService(wireMockClient) }
-  protected val stubController: StubController by lazy { StubController(wireMockService) }
+  protected val stubController: StubController by lazy { StubController(wireMockClient) }
 
   @BeforeAll
   fun runWireMock() {
