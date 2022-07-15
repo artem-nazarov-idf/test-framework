@@ -11,5 +11,9 @@
       "captcha": 11111,
       "role": "ADMINISTRATOR"
     }
+  },
+  "stub": {
+    "host": "127.0.0.1",
+    "port": 8080
   }
 }
