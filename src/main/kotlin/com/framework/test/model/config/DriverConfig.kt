@@ -1,4 +1,4 @@
-package com.framework.test.model
+package com.framework.test.model.config
 
 import com.framework.test.constants.BrowserType
 import com.framework.test.constants.DriverType

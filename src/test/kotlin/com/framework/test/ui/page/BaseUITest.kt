@@ -2,7 +2,7 @@ package com.framework.test.ui.page
 
 import com.codeborne.selenide.WebDriverRunner
 import com.framework.test.application.config.factory.ApplicationConfigReaderFactory
-import com.framework.test.model.ApplicationConfig
+import com.framework.test.model.config.ApplicationConfig
 import com.framework.test.ui.browser.BrowserConfig
 import com.framework.test.ui.driver.factory.WebDriverConfigSetterFactory
 import org.junit.jupiter.api.AfterAll

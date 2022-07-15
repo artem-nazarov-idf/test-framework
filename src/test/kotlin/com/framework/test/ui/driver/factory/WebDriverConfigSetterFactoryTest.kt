@@ -40,7 +40,7 @@ class WebDriverConfigSetterFactoryTest {
 
   @Test
   fun `WebDriverFactory create ChromeDriverConfigSetterFactory when provided browser type is firefox from System property`() {
-    System.setProperty("config.browser.type", "chrome")
+    System.setProperty("config.browser.type", "CHROME")
     val actualDriverConfig: DriverConfigSetter = WebDriverConfigSetterFactory().setDriverConfigFactory(DriverType.LOCAL)
 
     Assertions.assertTrue(

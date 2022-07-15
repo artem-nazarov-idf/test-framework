@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$x`
 import com.codeborne.selenide.SelenideElement
-import com.framework.test.model.ApplicationConfig
+import com.framework.test.model.config.ApplicationConfig
 import com.framework.test.ui.element.CustomClick.clickButton
 import com.framework.test.ui.element.CustomInput.setInputField
 import com.framework.test.ui.page.BasePage

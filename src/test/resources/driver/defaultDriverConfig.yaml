@@ -1,4 +1,4 @@
-browser: FIREFOX
+browser: CHROME
 driverType: LOCAL
 browserSize: 1920x1080
 gridNodIdName: 123456

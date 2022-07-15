@@ -5,7 +5,7 @@ import com.framework.test.constants.HttpClientDefaultTimeouts.DEFAULT_READ_SECON
 import com.framework.test.http.interseptors.BasicAuthInterceptor
 import com.framework.test.http.interseptors.LoggingInterceptor
 import com.framework.test.http.interseptors.SuccessStatusCodeInterceptor
-import com.framework.test.model.ApplicationConfig
+import com.framework.test.model.config.ApplicationConfig
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.framework.test.constants.FileNames
 import com.framework.test.file.reader.FileProvider
-import com.framework.test.model.DriverConfig
+import com.framework.test.model.config.DriverConfig
 import java.io.File
 
 class DriverConfigProvider {
