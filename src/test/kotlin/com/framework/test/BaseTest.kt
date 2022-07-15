@@ -6,11 +6,15 @@ import com.framework.test.context.dynamic.DynamicContextHolder
 import com.framework.test.context.dynamic.MyDynamicContext
 import com.framework.test.context.dynamicContext
 import com.framework.test.context.staticContext
-import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class BaseTest {
+  init {
+    StaticContextHolder.initContext(MyStaticContext())
+    DynamicContextHolder.initContext(MyDynamicContext())
+  }
 
   protected var staticContext: MyStaticContext
     get() {
@@ -28,9 +32,9 @@ abstract class BaseTest {
       DynamicContextHolder.initContext(value)
     }
 
-  @BeforeAll
-  fun initContext() {
-    dynamicContext = MyDynamicContext()
-    staticContext = MyStaticContext()
+  @AfterAll
+  fun clearContext() {
+    StaticContextHolder.clearContext()
+    DynamicContextHolder.clearContext()
   }
 }
