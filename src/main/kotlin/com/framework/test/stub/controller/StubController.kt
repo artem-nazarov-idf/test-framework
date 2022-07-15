@@ -1,13 +1,13 @@
 package com.framework.test.stub.controller
 
+import com.framework.test.model.config.ApplicationConfig
 import com.framework.test.stub.config.MockData
 import com.framework.test.stub.service.WireMockService
-import com.github.tomakehurst.wiremock.client.WireMock
 
 class StubController(
-  wireMockClient: WireMock
+  applicationConfig: ApplicationConfig
 ) {
-  private val mockService = WireMockService(wireMockClient)
+  private val mockService = WireMockService(applicationConfig)
 
   fun addStub(stubDataClass: MockData) {
     mockService.addStub(stubDataClass)

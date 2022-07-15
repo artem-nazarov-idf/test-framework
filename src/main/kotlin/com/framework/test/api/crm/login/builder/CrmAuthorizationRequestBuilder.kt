@@ -6,9 +6,8 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 class CrmAuthorizationRequestBuilder {
-  private val mapper = jacksonObjectMapper()
   val headers: MutableMap<String, String> = mutableMapOf()
-  lateinit var body: RequestBody
+  var body: RequestBody = "".toRequestBody()
 
   fun addHeader(key: String, value: String): CrmAuthorizationRequestBuilder = apply { headers[key] = value }
 
@@ -24,6 +23,6 @@ class CrmAuthorizationRequestBuilder {
       captcha = captcha,
       remember = remember
     )
-    body = mapper.writeValueAsString(crmAuthorizationRequest).toRequestBody()
+    body = jacksonObjectMapper().writeValueAsString(crmAuthorizationRequest).toRequestBody()
   }
 }

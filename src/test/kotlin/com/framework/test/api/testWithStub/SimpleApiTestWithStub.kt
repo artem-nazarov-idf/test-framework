@@ -22,7 +22,7 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = ["http://127.0.0.1:8080", "https://qa-delivery-solva-kz-master.moneyman.ru"])
+  @ValueSource(strings = ["http://127.0.0.1:8080", "https://qa-delivery-solva-kz-release.moneyman.ru"])
   fun `success login in crm system with stub and without stub`(baseUrl: String) {
     val endpoint = crmSignInMock.endpoint
 
