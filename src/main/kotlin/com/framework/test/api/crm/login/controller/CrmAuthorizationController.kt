@@ -5,17 +5,19 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.framework.test.api.crm.login.builder.CrmAuthorizationRequestBuilder
 import com.framework.test.api.crm.login.model.response.CrmUserInfoResponse
 import com.framework.test.http.client.CustomHttpClient
-import com.framework.test.model.config.ApplicationConfig
 import okhttp3.Response
 
-class CrmAuthorizationController(private val applicationConfig: ApplicationConfig, private val endpoint: String) {
+class CrmAuthorizationController(private val endpoint: String) {
   fun postCrmAuthorisationReturnResponse(
-    login: String, password: String, captcha: String, remember: Boolean = false
+    login: String,
+    password: String,
+    captcha: String,
+    remember: Boolean = false
   ): Response {
     val request: CrmAuthorizationRequestBuilder = CrmAuthorizationRequestBuilder()
       .addHeader("content-type", "application/json;charset=UTF-8")
       .addRequestBody(login, password, captcha, remember)
-    return CustomHttpClient(applicationConfig).post(endpoint, request.headers, request.body)
+    return CustomHttpClient().post(endpoint, request.headers, request.body)
   }
 
   fun postCrmAuthorisation(
@@ -24,7 +26,7 @@ class CrmAuthorizationController(private val applicationConfig: ApplicationConfi
     val request: CrmAuthorizationRequestBuilder = CrmAuthorizationRequestBuilder()
       .addHeader("content-type", "application/json;charset=UTF-8")
       .addRequestBody(login, password, captcha, remember)
-    val response: Response = CustomHttpClient(applicationConfig, baseUrl).post(endpoint, request.headers, request.body)
+    val response: Response = CustomHttpClient(baseUrl).post(endpoint, request.headers, request.body)
     return parseBodyToCrmUserInfoResponse(response)
   }
 

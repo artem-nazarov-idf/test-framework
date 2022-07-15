@@ -2,14 +2,14 @@ package com.framework.test.api.crm.operations
 
 import com.framework.test.api.crm.login.controller.CrmAuthorizationController
 import com.framework.test.api.crm.login.model.response.CrmUserInfoResponse
+import com.framework.test.context.administrator
 import com.framework.test.http.converters.CookieConverter
-import com.framework.test.model.config.ApplicationConfig
 import org.junit.jupiter.api.Assertions
 
-class CrmOperations(private val applicationConfig: ApplicationConfig, private val endpoint: String) {
+class CrmOperations(private val endpoint: String) {
 
   fun loginToCrm(login: String, password: String, captcha: String, baseUrl: String): CrmUserInfoResponse {
-    return CrmAuthorizationController(applicationConfig, endpoint)
+    return CrmAuthorizationController(endpoint)
       .postCrmAuthorisation(login, password, captcha, baseUrl)
   }
 
@@ -20,8 +20,11 @@ class CrmOperations(private val applicationConfig: ApplicationConfig, private va
     Assertions.assertEquals("Sergey Shikunets", actualResponseBody.userName)
   }
 
-  fun getCookieFromResponse(login: String, password: String, captcha: String, cookieName: String): String {
-    val response = CrmAuthorizationController(applicationConfig, endpoint)
+  fun getCookieFromResponse(
+    login: String = administrator().login!!, password: String = administrator().password!!, captcha: String =
+      administrator().captcha!!, cookieName: String
+  ): String {
+    val response = CrmAuthorizationController(endpoint)
       .postCrmAuthorisationReturnResponse(login, password, captcha)
     return CookieConverter().getCookieValueFromResponse(response, cookieName)
   }

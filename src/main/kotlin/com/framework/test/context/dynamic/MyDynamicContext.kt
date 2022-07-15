@@ -5,9 +5,7 @@ import com.framework.test.context.Context
 class MyDynamicContext : Context {
   private var jSessionIdValue: String = ""
 
-  fun getJSessionIdValue(): String {
-    return jSessionIdValue
-  }
+  fun getJSessionIdValue(): String = jSessionIdValue
 
   fun setJSessionIdValue(jSessionIdValue: String) {
     this.jSessionIdValue = jSessionIdValue

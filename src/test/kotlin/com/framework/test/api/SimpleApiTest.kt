@@ -10,7 +10,7 @@ class SimpleApiTest : ApiBaseTest() {
   @Test
   fun `the request for the first step of registration receives not empty cookies and not an empty response body`() {
     val endpoint = "/secure/registration"
-    val actualResponse: Response = CustomHttpClient(applicationConfig).get(endpoint)
+    val actualResponse: Response = CustomHttpClient().get(endpoint)
 
     ResponseNotEmptyVerifier().apply {
       verifyResponseNotEmptyBody(actualResponse)

@@ -1,11 +1,11 @@
 package com.framework.test.ui.browser
 
 import com.codeborne.selenide.Configuration
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.context.applicationConfig
 
-class BrowserConfig(private val applicationConfig: ApplicationConfig) {
+class BrowserConfig() {
 
   fun setBaseUrlFromApplicationConfig() {
-    Configuration.baseUrl = applicationConfig.getBaseUrl()
+    Configuration.baseUrl = applicationConfig().getBaseUrl()
   }
 }

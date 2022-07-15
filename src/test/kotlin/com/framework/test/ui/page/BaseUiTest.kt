@@ -1,11 +1,12 @@
 package com.framework.test.ui.page
 
 import com.codeborne.selenide.WebDriverRunner
-import com.framework.test.application.config.factory.ApplicationConfigReaderFactory
+import com.framework.test.context.constant.MyStaticContext
+import com.framework.test.context.constant.StaticContextHolder
 import com.framework.test.context.dynamic.DynamicContextHolder
 import com.framework.test.context.dynamic.MyDynamicContext
 import com.framework.test.context.dynamicContext
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.context.staticContext
 import com.framework.test.ui.browser.BrowserConfig
 import com.framework.test.ui.driver.factory.WebDriverConfigSetterFactory
 import org.junit.jupiter.api.AfterAll
@@ -14,12 +15,14 @@ import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class BaseUiTest {
-  protected val applicationConfig: ApplicationConfig =
-    ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
 
-  init {
-    DynamicContextHolder.initContext(MyDynamicContext())
-  }
+  protected var staticContext: MyStaticContext
+    get() {
+      return staticContext()
+    }
+    set(value) {
+      StaticContextHolder.initContext(value)
+    }
 
   protected var dynamicContext: MyDynamicContext
     get() {
@@ -29,10 +32,17 @@ abstract class BaseUiTest {
       DynamicContextHolder.initContext(value)
     }
 
+  init {
+    dynamicContext = MyDynamicContext()
+    staticContext = MyStaticContext()
+  }
+
   @BeforeAll
   fun setUp() {
     WebDriverConfigSetterFactory().setDriverConfigFactory().setDriverConfig()
-    BrowserConfig(applicationConfig).setBaseUrlFromApplicationConfig()
+    BrowserConfig().setBaseUrlFromApplicationConfig()
+//    dynamicContext = MyDynamicContext()
+//    staticContext = MyStaticContext()
   }
 
   @AfterAll

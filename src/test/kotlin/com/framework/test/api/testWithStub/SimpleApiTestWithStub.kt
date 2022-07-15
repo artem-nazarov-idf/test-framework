@@ -27,7 +27,7 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
     val endpoint = crmSignInMock.endpoint
 
     with(applicationConfig.crmUsers?.administrator!!) {
-      CrmOperations(applicationConfig, endpoint).apply {
+      CrmOperations(endpoint).apply {
         with(loginToCrm(login!!, password!!, captcha!!, baseUrl)) {
           verifyResponseSuccess(this)
         }
