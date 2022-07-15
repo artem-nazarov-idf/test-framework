@@ -2,7 +2,14 @@ package com.framework.test.context.dynamic
 
 import com.framework.test.context.Context
 
-interface MyDynamicContext : Context {
-  var currentSession: MmSessionContext = this.initCurrentSessionContext()
-  fun getCurrentSessionData(): MmSessionContext = currentSession
+class MyDynamicContext : Context {
+  private var jSessionIdValue: String = ""
+
+  fun getJSessionIdValue(): String {
+    return jSessionIdValue
+  }
+
+  fun setJSessionIdValue(jSessionIdValue: String) {
+    this.jSessionIdValue = jSessionIdValue
+  }
 }

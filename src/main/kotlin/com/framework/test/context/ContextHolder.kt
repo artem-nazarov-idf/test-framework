@@ -1,10 +1,10 @@
 package com.framework.test.context
 
 interface ContextHolder<T : Context> {
-  val idfContext: ThreadLocal<T>
+  val threadContext: ThreadLocal<T>
 
   fun setContext(context: T) {
-    if (idfContext.get() == null) idfContext.set(context)
+    if (threadContext.get() == null) threadContext.set(context)
   }
 
   fun initContext(context: T): T {
@@ -13,7 +13,7 @@ interface ContextHolder<T : Context> {
     return context
   }
 
-  fun getContext(): T = idfContext.get() ?: throw IllegalStateException("Context isn't initialized")
+  fun getContext(): T = threadContext.get() ?: throw IllegalStateException("Context isn't initialized")
 
-  fun clearContext() = idfContext.remove()
+  fun clearContext() = threadContext.remove()
 }

@@ -9,16 +9,21 @@ import com.framework.test.model.config.ApplicationConfig
 import okhttp3.Response
 
 class CrmAuthorizationController(private val applicationConfig: ApplicationConfig, private val endpoint: String) {
+  fun postCrmAuthorisationReturnResponse(
+    login: String, password: String, captcha: String, remember: Boolean = false
+  ): Response {
+    val request: CrmAuthorizationRequestBuilder = CrmAuthorizationRequestBuilder()
+      .addHeader("content-type", "application/json;charset=UTF-8")
+      .addRequestBody(login, password, captcha, remember)
+    return CustomHttpClient(applicationConfig).post(endpoint, request.headers, request.body)
+  }
+
   fun postCrmAuthorisation(
     login: String, password: String, captcha: String, baseUrl: String, remember: Boolean = false
   ): CrmUserInfoResponse {
     val request: CrmAuthorizationRequestBuilder = CrmAuthorizationRequestBuilder()
       .addHeader("content-type", "application/json;charset=UTF-8")
       .addRequestBody(login, password, captcha, remember)
-
-//    val headers = CrmAuthorizationRequestBuilder().addHeader("content-type",
-//        "application/json;charset=UTF-8")
-//    val body = CrmAuthorizationRequestBuilder().buildRequestBody(login, password, captcha, remember)
     val response: Response = CustomHttpClient(applicationConfig, baseUrl).post(endpoint, request.headers, request.body)
     return parseBodyToCrmUserInfoResponse(response)
   }
