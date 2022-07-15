@@ -1,7 +1,7 @@
 package com.framework.test.api.testWithStub
 
 import com.framework.test.api.ApiBaseTest
-import com.framework.test.stub.service.WireMockService
+import com.framework.test.stub.controller.StubController
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
 import org.junit.jupiter.api.AfterAll
@@ -13,7 +13,7 @@ abstract class WireMockBaseTest : ApiBaseTest() {
   private val wireMockServer: WireMockServer by lazy {
     WireMockServer(WireMockConfiguration.options().port(applicationConfig.stub.port))
   }
-  protected val wireMockService: WireMockService by lazy { WireMockService(wireMockServer) }
+  protected val stubController: StubController by lazy { StubController(applicationConfig) }
 
   @BeforeAll
   fun runWireMock() {

@@ -6,11 +6,15 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
 
 class StubMappingBuilder(
-  private val stubDataClass: MockData,
+  private val stubDataClass: MockData
 ) {
   private lateinit var stubMapping: MappingBuilder
 
-  fun setRequestMethodFromClass() = apply {
+  fun buildStubMappingFromClass(): MappingBuilder {
+    return setRequestMethodFromClass().setPriorityFromClass().setResponseFromClass().build()
+  }
+
+  private fun setRequestMethodFromClass(): StubMappingBuilder = apply {
     stubMapping = when (stubDataClass.method) {
       RequestMethods.POST -> WireMock.post(WireMock.urlPathMatching(stubDataClass.endpoint))
       RequestMethods.GET -> WireMock.get(WireMock.urlPathMatching(stubDataClass.endpoint))
@@ -18,13 +22,12 @@ class StubMappingBuilder(
     }
   }
 
-  fun setPriorityFromClass() = apply { stubMapping.atPriority(stubDataClass.priority) }
-  fun setResponseFromClass() = apply {
+  private fun setPriorityFromClass(): StubMappingBuilder = apply { stubMapping.atPriority(stubDataClass.priority) }
+  private fun setResponseFromClass(): StubMappingBuilder = apply {
     stubMapping.willReturn(
       StubResponseBuilder().addParametersToResponse(stubDataClass).build()
     )
   }
 
-  fun build(): MappingBuilder = stubMapping // todo плохо, можно вернуть в setResponseFromClass и надо завернуть в
-// общую функцию.
+  private fun build(): MappingBuilder = stubMapping
 }
