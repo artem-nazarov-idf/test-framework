@@ -11,33 +11,10 @@ import org.junit.jupiter.api.TestInstance
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class BaseUiTest : BaseTest() {
 
-//  protected var staticContext: MyStaticContext
-//    get() {
-//      return staticContext()
-//    }
-//    set(value) {
-//      StaticContextHolder.initContext(value)
-//    }
-//
-//  protected var dynamicContext: MyDynamicContext
-//    get() {
-//      return dynamicContext()
-//    }
-//    set(value) {
-//      DynamicContextHolder.initContext(value)
-//    }
-//
-//  init {
-//    dynamicContext = MyDynamicContext()
-//    staticContext = MyStaticContext()
-//  }
-
   @BeforeAll
   fun setUp() {
     WebDriverConfigSetterFactory().setDriverConfigFactory().setDriverConfig()
     BrowserConfig().setBaseUrlFromApplicationConfig()
-//    dynamicContext = MyDynamicContext()
-//    staticContext = MyStaticContext()
   }
 
   @AfterAll

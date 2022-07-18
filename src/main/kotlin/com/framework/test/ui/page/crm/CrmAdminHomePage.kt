@@ -1,10 +1,11 @@
 package com.framework.test.ui.page.crm
 
+import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.SelenideElement
 import com.codeborne.selenide.WebDriverRunner
 import com.framework.test.context.applicationConfig
-import com.framework.test.context.jSessionIdValue
+import com.framework.test.context.jSessionId
 import com.framework.test.ui.element.CustomDropDown.dropDownVisible
 import com.framework.test.ui.page.BasePage
 import org.apache.logging.log4j.kotlin.Logging
@@ -17,9 +18,9 @@ class CrmAdminHomePage() : Logging, BasePage() {
 
   fun openPageWithSessionCookie() {
     openPage()
-    val cookie = Cookie("JSESSIONID", jSessionIdValue())
+    val cookie = Cookie("JSESSIONID", jSessionId())
     WebDriverRunner.getWebDriver().manage().addCookie(cookie)
-//    Selenide.refresh()
+    Selenide.refresh()
   }
 
   fun evaluateDropDownVisible() = dropDownVisible(mainNavDropdown)

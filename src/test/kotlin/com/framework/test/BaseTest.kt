@@ -7,6 +7,7 @@ import com.framework.test.context.dynamic.MyDynamicContext
 import com.framework.test.context.dynamicContext
 import com.framework.test.context.staticContext
 import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -31,6 +32,10 @@ abstract class BaseTest {
     set(value) {
       DynamicContextHolder.initContext(value)
     }
+
+  @BeforeAll
+  fun addListeners() {
+  }
 
   @AfterAll
   fun clearContext() {
