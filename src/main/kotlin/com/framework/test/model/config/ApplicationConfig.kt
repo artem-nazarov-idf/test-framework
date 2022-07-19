@@ -34,3 +34,10 @@ data class StubConfig(
   var host: String,
   var port: Int
 )
+
+data class DbSqlConfig(
+  var url: String,
+  var user: String,
+  var password: String,
+  var mainSchema: String
+)
