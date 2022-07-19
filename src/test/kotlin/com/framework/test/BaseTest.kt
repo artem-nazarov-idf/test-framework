@@ -5,9 +5,7 @@ import com.framework.test.context.constant.StaticContextHolder
 import com.framework.test.context.dynamic.DynamicContextHolder
 import com.framework.test.context.dynamic.MyDynamicContext
 import com.framework.test.context.dynamicContext
-import com.framework.test.context.staticContext
 import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -17,14 +15,6 @@ abstract class BaseTest {
     DynamicContextHolder.initContext(MyDynamicContext())
   }
 
-  protected var staticContext: MyStaticContext
-    get() {
-      return staticContext()
-    }
-    set(value) {
-      StaticContextHolder.initContext(value)
-    }
-
   protected var dynamicContext: MyDynamicContext
     get() {
       return dynamicContext()
@@ -32,10 +22,6 @@ abstract class BaseTest {
     set(value) {
       DynamicContextHolder.initContext(value)
     }
-
-  @BeforeAll
-  fun addListeners() {
-  }
 
   @AfterAll
   fun clearContext() {
