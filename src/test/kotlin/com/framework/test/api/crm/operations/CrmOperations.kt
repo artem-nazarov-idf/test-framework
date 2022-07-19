@@ -12,8 +12,7 @@ class CrmOperations(private val endpoint: String) {
     login: String = administrator().login!!, password: String = administrator().password!!, captcha:
     String = administrator().captcha!!,
     baseUrl: String = applicationConfig().getBaseUrl()
-  ):
-      CrmUserInfoResponse {
+  ): CrmUserInfoResponse {
     return CrmAuthorizationController(endpoint)
       .postCrmAuthorisation(login, password, captcha, baseUrl)
   }
