@@ -24,15 +24,15 @@ class MyDbClient(
     return session as Session
   }
 
-  override fun selectOneRow(): Int? {
-    val aliceQuery = sqlQuery("select id from user_account where login = 'ospanova77@bk.ru'") // тут
+  override fun selectOneRow(): Member? {
+    val aliceQuery = sqlQuery("select id,login,name from user_account where login = 'ospanova77@bk.ru'") // тут
     // пока адский хардкод
     val good: Boolean = getClient().execute(aliceQuery)
-    return getClient().first(aliceQuery) { row -> row.int("id") }
+    return getClient().first(aliceQuery, toMember)
   }
 
   override fun selectAllRows(): List<Member> {
-    val allMembersQuery = sqlQuery("select id, name, created_at from members")
+    val allMembersQuery = sqlQuery("select id,login,name created_at from members")
     return getClient().list(allMembersQuery, toMember)
   }
 

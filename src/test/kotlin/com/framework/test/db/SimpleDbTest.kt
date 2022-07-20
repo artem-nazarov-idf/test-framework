@@ -16,8 +16,8 @@ class SimpleDbTest : BaseTest() {
 
   @Test
   fun testExample() {
-    val value: Int? = dbClient.selectOneRow()
+    val value: Member? = dbClient.selectOneRow()
 
-    Assertions.assertEquals(10000, value)
+    Assertions.assertEquals(10000, value?.id)
   }
 }
