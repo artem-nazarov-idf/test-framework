@@ -20,10 +20,12 @@ data class ApplicationConfig(
 
 data class CRMUsers(
   @JsonProperty("ADMINISTRATOR")
-  var administrator: Administrator
+  var administrator: CrmUser,
+  @JsonProperty("TERMINATOR")
+  var terminator: CrmUser
 )
 
-data class Administrator(
+data class CrmUser(
   var login: String?,
   var password: String?,
   var captcha: String?,

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.SelenideElement
 import com.codeborne.selenide.WebDriverRunner
+import com.framework.test.constants.CookieType
 import com.framework.test.context.applicationConfig
 import com.framework.test.context.jSessionId
 import com.framework.test.ui.element.CustomDropDown.dropDownVisible
@@ -18,7 +19,7 @@ class CrmAdminHomePage() : Logging, BasePage() {
 
   fun openPageWithSessionCookie() {
     openPage()
-    val cookie = Cookie("JSESSIONID", jSessionId())
+    val cookie = Cookie(CookieType.J_SESSION_ID.value, jSessionId())
     WebDriverRunner.getWebDriver().manage().addCookie(cookie)
     Selenide.refresh()
   }
