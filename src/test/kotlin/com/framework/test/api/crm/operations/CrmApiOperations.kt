@@ -17,5 +17,6 @@ class CrmApiOperations {
     Assertions.assertEquals("Администратор", actualResponseBody.localizedRole)
     Assertions.assertEquals(10, actualResponseBody.roleId)
     Assertions.assertEquals("Sergey Shikunets", actualResponseBody.userName)
+    // вынести в тест.
   }
 }

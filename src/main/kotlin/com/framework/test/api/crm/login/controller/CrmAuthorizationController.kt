@@ -28,7 +28,8 @@ class CrmAuthorizationController() {
 
   fun postCrmAuthorisation(crmUser: CrmUser): CrmUserInfoResponse {
     val response: Response = postCrmAuthorisationReturnResponse(crmUser)
-    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
+    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse() // интерсептор по кукам
+    // если надо везде.
     return parseBodyToCrmUserInfoResponse(response)
   }
 

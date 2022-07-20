@@ -27,11 +27,9 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
   @ValueSource(strings = ["http://127.0.0.1:8080", "https://qa-delivery-solva-kz-release.moneyman.ru"])
   fun `success login in crm system with stub and without stub`(baseUrl: String) {
     applicationConfig().host = baseUrl
-
     CrmApiOperations().apply {
-      with(loginToCrm(administrator())) {
-        verifyResponseSuccessAdminLogin(this)
-      }
+      val actualRes = loginToCrm(administrator())
+      verifyResponseSuccessAdminLogin(this, expected)
     }
   }
 }

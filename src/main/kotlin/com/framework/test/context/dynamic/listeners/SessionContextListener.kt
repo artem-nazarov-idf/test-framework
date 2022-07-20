@@ -8,9 +8,9 @@ class SessionContextListener : Listener {
 
   init {
     sessionContext().add(this)
-  }
+  } // не должен сам это делать.
 
   override fun update() {
     jSessionIdValue = sessionContext().responseCookies?.get(CookieType.J_SESSION_ID.value)
-  }
+  } // надо передать кому-то
 }
