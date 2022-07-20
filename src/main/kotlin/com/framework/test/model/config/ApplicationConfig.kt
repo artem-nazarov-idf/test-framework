@@ -11,7 +11,6 @@ data class ApplicationConfig(
   var host: String?,
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
-//  var crmUsers: CRMUsers?,
   val crmUsers: Map<CrmUserRole, CrmUser>? = null,
   var stub: StubConfig
 ) {
