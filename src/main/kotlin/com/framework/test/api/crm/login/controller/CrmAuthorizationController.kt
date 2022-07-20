@@ -4,17 +4,14 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.framework.test.api.crm.login.builder.CrmAuthorizationRequestBuilder
 import com.framework.test.api.crm.login.model.response.CrmUserInfoResponse
-import com.framework.test.constants.EndPoints
 import com.framework.test.constants.HttpContentType
-import com.framework.test.context.sessionContext
+import com.framework.test.context.applicationConfig
 import com.framework.test.http.client.CustomHttpClient
-import com.framework.test.http.converters.CookieConverter
 import com.framework.test.model.config.CrmUser
 import okhttp3.Response
 
-class CrmAuthorizationController() {
-  private val endpoint: String = EndPoints.CRM_SIGN_IN
-  private val httpClient = CustomHttpClient()
+class CrmAuthorizationController(private val httpClient: CustomHttpClient = CustomHttpClient()) {
+  private val endpoint: String = applicationConfig().apiCrmSingInEndpoint!!
 
   private fun postCrmAuthorisationReturnResponse(
     crmUser: CrmUser,
@@ -28,8 +25,7 @@ class CrmAuthorizationController() {
 
   fun postCrmAuthorisation(crmUser: CrmUser): CrmUserInfoResponse {
     val response: Response = postCrmAuthorisationReturnResponse(crmUser)
-    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse() // интерсептор по кукам
-    // если надо везде.
+//    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
     return parseBodyToCrmUserInfoResponse(response)
   }
 

@@ -9,6 +9,7 @@ data class ApplicationConfig(
   @JsonProperty("pass")
   var password: String?,
   var host: String?,
+  var apiCrmSingInEndpoint: String?,
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
   val crmUsers: Map<CrmUserRole, CrmUser>? = null,

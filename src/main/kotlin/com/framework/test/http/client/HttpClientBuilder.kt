@@ -4,6 +4,7 @@ import com.framework.test.constants.HttpClientDefaultTimeouts.DEFAULT_CONNECT_SE
 import com.framework.test.constants.HttpClientDefaultTimeouts.DEFAULT_READ_SECONDS_TIMEOUT
 import com.framework.test.context.applicationConfig
 import com.framework.test.http.interseptors.BasicAuthInterceptor
+import com.framework.test.http.interseptors.CookieListenerInterceptor
 import com.framework.test.http.interseptors.LoggingInterceptor
 import com.framework.test.http.interseptors.SuccessStatusCodeInterceptor
 import com.framework.test.model.config.ApplicationConfig
@@ -21,6 +22,7 @@ class HttpClientBuilder(private val applicationConfig: ApplicationConfig = appli
       .readTimeout(readSecondsTimeout, TimeUnit.SECONDS)
       .addInterceptor(BasicAuthInterceptor(applicationConfig.userName!!, applicationConfig.password!!))
       .addInterceptor(LoggingInterceptor())
+      .addInterceptor(CookieListenerInterceptor())
       .addInterceptor(SuccessStatusCodeInterceptor())
       .build()
   }

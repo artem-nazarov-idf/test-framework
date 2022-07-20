@@ -1,6 +1,11 @@
 user: testYaml
 pass: testYaml
 host: qa-delivery-solva-kz-release.moneyman.ru #qa-delivery-solva-kz-master.moneyman.ru release
+
+#API
+apiCrmSingInEndpoint: /secure/rest/sign/in
+
+#CRM
 crmLoginEndpoint: /secure/new-admin/index.html#/login
 crmStartEndpoint: /secure/new-admin/index.html#
 crmUsers:
@@ -14,6 +19,8 @@ crmUsers:
     password: password
     captcha: 11111
     role: TERMINATOR
+
+#Wire Mock
 stub:
   host: 127.0.0.1
   port: 8080

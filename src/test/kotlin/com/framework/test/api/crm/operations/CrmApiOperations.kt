@@ -12,11 +12,13 @@ class CrmApiOperations {
     return loginController.postCrmAuthorisation(crmUser)
   }
 
-  fun verifyResponseSuccessAdminLogin(actualResponseBody: CrmUserInfoResponse) {
-    Assertions.assertEquals(1000000, actualResponseBody.id)
-    Assertions.assertEquals("Администратор", actualResponseBody.localizedRole)
-    Assertions.assertEquals(10, actualResponseBody.roleId)
-    Assertions.assertEquals("Sergey Shikunets", actualResponseBody.userName)
-    // вынести в тест.
+  fun verifyResponseSingInSuccess(
+    expectedCrmUserInfo: CrmUserInfoResponse,
+    actualCrmUserInfo: CrmUserInfoResponse
+  ) {
+    Assertions.assertEquals(expectedCrmUserInfo.id, actualCrmUserInfo.id)
+    Assertions.assertEquals(expectedCrmUserInfo.localizedRole, actualCrmUserInfo.localizedRole)
+    Assertions.assertEquals(expectedCrmUserInfo.roleId, actualCrmUserInfo.roleId)
+    Assertions.assertEquals(expectedCrmUserInfo.userName, actualCrmUserInfo.userName)
   }
 }
