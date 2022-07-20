@@ -10,6 +10,12 @@
       "password": "test",
       "captcha": 11111,
       "role": "ADMINISTRATOR"
+    },
+    "TERMINATOR": {
+      "login": "admmin",
+      "password": "test",
+      "captcha": 11111,
+      "role": "TERMINATOR"
     }
   },
   "stub": {

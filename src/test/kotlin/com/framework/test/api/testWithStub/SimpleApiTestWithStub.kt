@@ -1,7 +1,8 @@
 package com.framework.test.api.testWithStub
 
-import com.framework.test.api.crm.operations.CrmOperations
+import com.framework.test.api.crm.operations.CrmApiOperations
 import com.framework.test.context.administrator
+import com.framework.test.context.applicationConfig
 import com.framework.test.stub.config.CrmSignInMock
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -25,13 +26,11 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
   @ParameterizedTest
   @ValueSource(strings = ["http://127.0.0.1:8080", "https://qa-delivery-solva-kz-release.moneyman.ru"])
   fun `success login in crm system with stub and without stub`(baseUrl: String) {
-    val endpoint = crmSignInMock.endpoint
+    applicationConfig().host = baseUrl
 
-    with(administrator()) {
-      CrmOperations(endpoint).apply {
-        with(loginToCrm(login!!, password!!, captcha!!, baseUrl)) {
-          verifyResponseSuccess(this)
-        }
+    CrmApiOperations().apply {
+      with(loginToCrm(administrator())) {
+        verifyResponseSuccessAdminLogin(this)
       }
     }
   }

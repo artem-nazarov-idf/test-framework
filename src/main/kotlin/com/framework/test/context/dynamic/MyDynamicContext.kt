@@ -1,13 +1,12 @@
 package com.framework.test.context.dynamic
 
 import com.framework.test.context.Context
-import com.framework.test.context.dynamic.listeners.ReaderJSessionIdValue
-import com.framework.test.context.dynamic.session.JSessionIdUpdater
+import com.framework.test.context.dynamic.listeners.SessionContextListener
 
 class MyDynamicContext : Context {
-  private val jSessionIdUpdater = JSessionIdUpdater()
-  private val readerJSessionIdValue = ReaderJSessionIdValue(jSessionIdUpdater)
+  private val sessionContextListener = SessionContextListener()
 
-  fun getJSessionId(): String = readerJSessionIdValue.jSessionIdValue
-  fun getJSessionIdUpdater(): JSessionIdUpdater = jSessionIdUpdater
+  fun getJSessionIdValue(): String? {
+    return sessionContextListener.jSessionIdValue
+  }
 }
