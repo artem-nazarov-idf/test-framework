@@ -1,6 +1,7 @@
 package com.framework.test.model.config
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.framework.test.constants.CrmUserRole
 
 data class ApplicationConfig(
   @JsonProperty("user")
@@ -10,20 +11,14 @@ data class ApplicationConfig(
   var host: String?,
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
-  var crmUsers: CRMUsers?,
+//  var crmUsers: CRMUsers?,
+  val crmUsers: Map<CrmUserRole, CrmUser>? = null,
   var stub: StubConfig
 ) {
   fun getBaseUrl(): String {
     return "https://$host"
   }
 }
-
-data class CRMUsers(
-  @JsonProperty("ADMINISTRATOR")
-  var administrator: CrmUser,
-  @JsonProperty("TERMINATOR")
-  var terminator: CrmUser
-)
 
 data class CrmUser(
   var login: String?,
