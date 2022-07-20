@@ -5,7 +5,10 @@ import com.vladsch.kotlin.jdbc.Session
 import com.vladsch.kotlin.jdbc.session
 import com.vladsch.kotlin.jdbc.sqlQuery
 
-class MyDbClient(private val jdbcUrl: String, private val jdbcUser: String, private val jdbcPassword: String) :
+class MyDbClient(
+  private val jdbcUrl: String, private val jdbcUser: String, private val jdbcPassword: String, private
+  val shema: String
+) :
   DbClient {
   private var session: Session? = null
 

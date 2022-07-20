@@ -12,7 +12,8 @@ data class ApplicationConfig(
   var crmLoginEndpoint: String?,
   var crmStartEndpoint: String?,
   val crmUsers: Map<CrmUserRole, CrmUser>? = null,
-  var stub: StubConfig
+  var stub: StubConfig,
+  var dbSqlConfig: DbSqlConfig
 ) {
   fun getBaseUrl(): String {
     return "https://$host"
