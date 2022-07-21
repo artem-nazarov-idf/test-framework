@@ -13,7 +13,7 @@ interface ContextHolder<T : Context> {
     return context
   }
 
-  fun getContext(): T = threadContext.get() ?: throw IllegalStateException("Context isn't initialized")
+  fun getContext(): T = threadContext.get() ?: error("Context isn't initialized")
 
   fun clearContext() = threadContext.remove()
 }

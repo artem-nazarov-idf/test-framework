@@ -25,7 +25,6 @@ class CrmAuthorizationController(private val httpClient: CustomHttpClient = Cust
 
   fun postCrmAuthorisation(crmUser: CrmUser): CrmUserInfoResponse {
     val response: Response = postCrmAuthorisationReturnResponse(crmUser)
-//    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
     return parseBodyToCrmUserInfoResponse(response)
   }
 

@@ -6,13 +6,14 @@ import com.framework.test.context.administrator
 import com.framework.test.context.applicationConfig
 import com.framework.test.stub.config.CrmSignInMock
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class SimpleApiTestWithStub : WireMockBaseTest() {
   private val crmSignInMock by lazy { CrmSignInMock() }
-  private val expectedUserInfo by lazy {
+  private val expectedAdminUserInfo by lazy {
     CrmUserInfoResponse(
       id = 1000000, localizedRole = "Администратор",
       partnerType = null, role = null, roleId = 10, userName = "Sergey Shikunets"
@@ -36,7 +37,7 @@ class SimpleApiTestWithStub : WireMockBaseTest() {
     applicationConfig().host = baseUrl
     CrmApiOperations().apply {
       val actualUserInfo: CrmUserInfoResponse = loginToCrm(administrator())
-      verifyResponseSingInSuccess(expectedUserInfo, actualUserInfo)
+      Assertions.assertEquals(expectedAdminUserInfo, actualUserInfo)
     }
   }
 }

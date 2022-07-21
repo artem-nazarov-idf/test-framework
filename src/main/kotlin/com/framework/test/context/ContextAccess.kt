@@ -14,6 +14,6 @@ internal fun staticContext(): MyStaticContext = StaticContextHolder.getContext()
 internal fun applicationConfig(): ApplicationConfig = staticContext().applicationConfig
 internal fun stubConfig(): StubConfig = applicationConfig().stub
 internal fun administrator(): CrmUser = applicationConfig().crmUsers!![CrmUserRole.ADMINISTRATOR]!!
-internal fun sessionContext(): SessionContext = staticContext().sessionContext
+internal fun sessionContext(): SessionContext = dynamicContext().sessionContext
 internal fun dynamicContext(): MyDynamicContext = DynamicContextHolder.getContext()
 internal fun jSessionId(): String? = dynamicContext().jSessionIdValue

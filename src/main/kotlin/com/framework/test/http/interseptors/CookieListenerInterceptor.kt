@@ -11,13 +11,9 @@ class CookieListenerInterceptor : Interceptor, Logging {
   override fun intercept(chain: Interceptor.Chain): Response {
     val request: Request = chain.request()
     val response: Response = chain.proceed(request)
-    val actualCookie: MutableMap<String, String> = CookieConverter(response).getCookiesFromResponse()
-    val currentCookie: MutableMap<String, String>? = sessionContext().responseCookies
 
-    if (actualCookie != currentCookie) {
-      logger.info("update cookie with $actualCookie")
-      sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
-    }
-    return response
+    sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
+
+    return response // проверить как отрабатывает
   }
 }
