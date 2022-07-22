@@ -2,11 +2,12 @@ package com.framework.test.context.dynamic
 
 import com.framework.test.context.Context
 import com.framework.test.context.dynamic.listeners.SessionContextListener
+import com.framework.test.context.dynamic.session.SessionContext
 
 class MyDynamicContext : Context {
-  private val sessionContextListener = SessionContextListener()
+  val sessionContext = SessionContext()
 
-  fun getJSessionIdValue(): String? {
-    return sessionContextListener.jSessionIdValue
+  init {
+    sessionContext.add(SessionContextListener())
   }
 }

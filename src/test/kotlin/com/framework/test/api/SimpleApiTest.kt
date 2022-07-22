@@ -1,6 +1,6 @@
 package com.framework.test.api
 
-import com.framework.test.constants.CookieType
+import com.framework.test.constants.CookieType.JSESSIONID
 import com.framework.test.http.client.CustomHttpClient
 import com.framework.test.http.verifiers.ResponseNotEmptyVerifier
 import okhttp3.Response
@@ -15,7 +15,7 @@ class SimpleApiTest : ApiBaseTest() {
 
     ResponseNotEmptyVerifier().apply {
       verifyResponseNotEmptyBody(actualResponse)
-      verifyResponseNotEmptyCookieValue(actualResponse, CookieType.J_SESSION_ID.value)
+      verifyResponseNotEmptyCookieValue(actualResponse, JSESSIONID.name)
     }
   }
 }

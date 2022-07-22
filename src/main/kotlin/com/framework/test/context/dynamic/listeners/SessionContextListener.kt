@@ -1,16 +1,12 @@
 package com.framework.test.context.dynamic.listeners
 
-import com.framework.test.constants.CookieType
+import com.framework.test.constants.CookieType.JSESSIONID
 import com.framework.test.context.sessionContext
+import org.openqa.selenium.Cookie
 
 class SessionContextListener : Listener {
-  var jSessionIdValue: String? = ""
-
-  init {
-    sessionContext().add(this)
-  }
-
   override fun update() {
-    jSessionIdValue = sessionContext().responseCookies?.get(CookieType.J_SESSION_ID.value)
+    val jSessionIdValue: String? = sessionContext().responseCookies?.get(JSESSIONID.name)
+    sessionContext().authorizationCookie = Cookie(JSESSIONID.name, jSessionIdValue)
   }
 }

@@ -4,10 +4,6 @@ import okhttp3.Response
 import org.apache.logging.log4j.kotlin.Logging
 
 class CookieConverter(private val response: Response) : Logging {
-  fun getCookieValueFromResponse(nameCookie: String): String? {
-    return getCookiesFromResponse()[nameCookie]
-  }
-
   fun getCookiesFromResponse(): MutableMap<String, String> {
     val cookiesMap: MutableMap<String, String> = mutableMapOf()
     val cookies: String? = response.headers["set-cookie"]
