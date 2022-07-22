@@ -29,5 +29,5 @@ stub:
 dbSqlConfig:
   url: jdbc:mysql://10.1.1.74:3306
   user: automation-tests
-  password: Isdklf564tf89ODasfj35645traefdsf
+  password: password
   mainSchema: kz_release_solva #kz_release_solva
