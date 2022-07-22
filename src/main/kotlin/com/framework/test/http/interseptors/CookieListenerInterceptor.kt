@@ -14,6 +14,6 @@ class CookieListenerInterceptor : Interceptor, Logging {
 
     sessionContext().responseCookies = CookieConverter(response).getCookiesFromResponse()
 
-    return response // проверить как отрабатывает
+    return response
   }
 }

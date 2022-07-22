@@ -6,6 +6,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 data class CrmAuthorizationRequest(
   val login: String,
   val password: String,
-  val captcha: String,
-  val remember: Boolean
+  val captcha: String
 )

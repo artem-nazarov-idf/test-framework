@@ -15,7 +15,7 @@ class SimpleApiTest : ApiBaseTest() {
 
     ResponseNotEmptyVerifier().apply {
       verifyResponseNotEmptyBody(actualResponse)
-      verifyResponseNotEmptyCookieValue(actualResponse, JSESSIONID.value)
+      verifyResponseNotEmptyCookieValue(actualResponse, JSESSIONID.name)
     }
   }
 }

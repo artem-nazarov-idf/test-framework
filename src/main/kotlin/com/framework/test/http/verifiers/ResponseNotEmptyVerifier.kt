@@ -10,7 +10,7 @@ class ResponseNotEmptyVerifier {
   }
 
   fun verifyResponseNotEmptyCookieValue(response: Response, cookieName: String) {
-    val cookieValue: String? = CookieConverter(response).getCookieValueFromResponse(cookieName)
+    val cookieValue: String? = CookieConverter(response).getCookiesFromResponse()[cookieName]
     Assertions.assertFalse(cookieValue.isNullOrBlank(), "cookie [$cookieName] value is empty")
   }
 }

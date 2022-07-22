@@ -8,6 +8,6 @@ class CrmApiOperations {
   private val loginController by lazy { CrmAuthorizationController() }
 
   fun loginToCrm(crmUser: CrmUser): CrmUserInfoResponse {
-    return loginController.postCrmAuthorisation(crmUser)
+    return loginController.postCrmAuthorization(crmUser)
   }
 }

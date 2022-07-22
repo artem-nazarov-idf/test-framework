@@ -14,7 +14,7 @@ abstract class BaseUiTest : BaseTest() {
   @BeforeAll
   fun setUp() {
     WebDriverConfigSetterFactory().setDriverConfigFactory().setDriverConfig()
-    BrowserConfig().setBaseUrlFromApplicationConfig()
+    BrowserConfig.setBaseUrlFromApplicationConfig()
   }
 
   @AfterAll

@@ -13,18 +13,17 @@ import okhttp3.Response
 class CrmAuthorizationController(private val httpClient: CustomHttpClient = CustomHttpClient()) {
   private val endpoint: String = applicationConfig().apiCrmSingInEndpoint!!
 
-  private fun postCrmAuthorisationReturnResponse(
+  private fun getResponseFromCrmAuthorization(
     crmUser: CrmUser,
-    remember: Boolean = false
   ): Response {
     val request: CrmAuthorizationRequestBuilder = CrmAuthorizationRequestBuilder()
       .addHeader("content-type", HttpContentType.APPLICATION_JSON.value)
-      .addRequestBody(crmUser.login!!, crmUser.password!!, crmUser.captcha!!, remember)
+      .addRequestBody(crmUser.login!!, crmUser.password!!, crmUser.captcha!!)
     return httpClient.post(endpoint, request.headers, request.body)
   }
 
-  fun postCrmAuthorisation(crmUser: CrmUser): CrmUserInfoResponse {
-    val response: Response = postCrmAuthorisationReturnResponse(crmUser)
+  fun postCrmAuthorization(crmUser: CrmUser): CrmUserInfoResponse {
+    val response: Response = getResponseFromCrmAuthorization(crmUser)
     return parseBodyToCrmUserInfoResponse(response)
   }
 
