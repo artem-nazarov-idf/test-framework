@@ -1,6 +1,6 @@
 user: testYaml
 pass: passYaml
-host: qa-delivery-solva-kz-release.moneyman.ru #qa-delivery-solva-kz-master.moneyman.ru release
+host: qa-delivery-solva-kz-release.moneyman.ru
 
 #API
 apiCrmSingInEndpoint: /secure/rest/sign/in
@@ -24,3 +24,10 @@ crmUsers:
 stub:
   host: 127.0.0.1
   port: 8080
+
+#DB SQL
+dbSqlConfig:
+  url: jdbc:mysql://10.1.1.74:3306
+  user: automation-tests
+  password: password
+  mainSchema: kz_release_solva
