@@ -3,19 +3,18 @@ package com.framework.test.db.rawQuery
 import com.framework.test.context.applicationConfig
 
 object SqlQuery {
-  private val mainShema = applicationConfig().dbSqlConfig.mainSchema // todo вынести в контекст
+  private val mainSchema = applicationConfig().dbSqlConfig.mainSchema
 
   val recentCrmUsersSelectQuery: String = """
     select id, login, name
-    from $mainShema.user_account
+    from $mainSchema.user_account
     order by id desc
-    limit 0,500
-  """.trimIndent() // название не правильное у запроса todo
+    limit 500
+  """.trimIndent()
 
-  val creditSelectQuery: String = """
-    select
-    creditTableFields
-    from borrowerDbSchema.credit cr
-    where cr.id = :creditId
-  """.trimIndent() // todo взято из проекта видимо :creditId это параметр, там билдером это билдится.!!!
+  val getSpecificUserByNameSelectQuery: String = """
+    select id, login, name
+    from $mainSchema.user_account
+    where name = :name
+  """.trimIndent()
 }

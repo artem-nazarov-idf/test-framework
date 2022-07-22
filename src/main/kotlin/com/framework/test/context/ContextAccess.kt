@@ -8,6 +8,7 @@ import com.framework.test.context.dynamic.MyDynamicContext
 import com.framework.test.context.dynamic.session.SessionContext
 import com.framework.test.model.config.ApplicationConfig
 import com.framework.test.model.config.CrmUser
+import com.framework.test.model.config.DbSqlConfig
 import com.framework.test.model.config.StubConfig
 import org.openqa.selenium.Cookie
 
@@ -18,3 +19,4 @@ internal fun administrator(): CrmUser = applicationConfig().crmUsers!![CrmUserRo
 internal fun sessionContext(): SessionContext = dynamicContext().sessionContext
 internal fun dynamicContext(): MyDynamicContext = DynamicContextHolder.getContext()
 internal fun authorizationCookie(): Cookie? = sessionContext().authorizationCookie
+internal fun dbSqlConfig(): DbSqlConfig = applicationConfig().dbSqlConfig
