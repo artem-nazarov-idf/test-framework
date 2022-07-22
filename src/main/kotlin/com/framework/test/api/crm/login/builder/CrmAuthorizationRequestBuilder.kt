@@ -14,14 +14,12 @@ class CrmAuthorizationRequestBuilder {
   fun addRequestBody(
     login: String,
     password: String,
-    captcha: String,
-    remember: Boolean
+    captcha: String
   ): CrmAuthorizationRequestBuilder = apply {
     val crmAuthorizationRequest = CrmAuthorizationRequest(
       login = login,
       password = password,
-      captcha = captcha,
-      remember = remember
+      captcha = captcha
     )
     body = jacksonObjectMapper().writeValueAsString(crmAuthorizationRequest).toRequestBody()
   }

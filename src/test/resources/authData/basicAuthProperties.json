@@ -10,6 +10,16 @@
       "password": "test",
       "captcha": 11111,
       "role": "ADMINISTRATOR"
+    },
+    "TERMINATOR": {
+      "login": "admmin",
+      "password": "test",
+      "captcha": 11111,
+      "role": "TERMINATOR"
     }
+  },
+  "stub": {
+    "host": "127.0.0.1",
+    "port": 8080
   }
 }

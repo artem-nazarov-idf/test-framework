@@ -2,14 +2,16 @@ package com.framework.test.http.client
 
 import com.framework.test.constants.HttpClientDefaultTimeouts.DEFAULT_CONNECT_SECONDS_TIMEOUT
 import com.framework.test.constants.HttpClientDefaultTimeouts.DEFAULT_READ_SECONDS_TIMEOUT
+import com.framework.test.context.applicationConfig
 import com.framework.test.http.interseptors.BasicAuthInterceptor
+import com.framework.test.http.interseptors.CookieListenerInterceptor
 import com.framework.test.http.interseptors.LoggingInterceptor
 import com.framework.test.http.interseptors.SuccessStatusCodeInterceptor
 import com.framework.test.model.config.ApplicationConfig
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
-class HttpClientBuilder(private val applicationConfig: ApplicationConfig) {
+class HttpClientBuilder(private val applicationConfig: ApplicationConfig = applicationConfig()) {
 
   fun buildDefaultClient(
     connectSecondsTimeout: Long = DEFAULT_CONNECT_SECONDS_TIMEOUT,
@@ -20,6 +22,7 @@ class HttpClientBuilder(private val applicationConfig: ApplicationConfig) {
       .readTimeout(readSecondsTimeout, TimeUnit.SECONDS)
       .addInterceptor(BasicAuthInterceptor(applicationConfig.userName!!, applicationConfig.password!!))
       .addInterceptor(LoggingInterceptor())
+      .addInterceptor(CookieListenerInterceptor())
       .addInterceptor(SuccessStatusCodeInterceptor())
       .build()
   }

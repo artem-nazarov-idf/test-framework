@@ -1,16 +1,14 @@
 package com.framework.test.stub.service
 
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.context.stubConfig
 import com.framework.test.stub.builder.StubMappingBuilder
 import com.framework.test.stub.config.MockData
 import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.stubbing.StubMapping
 
-class WireMockService(
-  applicationConfig: ApplicationConfig
-) : StubOperation {
-  private val wireMockClient: WireMock = WireMock(applicationConfig.stub.host, applicationConfig.stub.port)
+class WireMockService : StubOperation {
+  private val wireMockClient: WireMock = WireMock(stubConfig().host, stubConfig().port)
 
   override fun addStub(stubDataClass: MockData) {
     val mappingBuilderFromClass: MappingBuilder = StubMappingBuilder(stubDataClass).buildStubMappingFromClass()

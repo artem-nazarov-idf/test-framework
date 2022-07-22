@@ -1,8 +1,7 @@
 package com.framework.test.ui.page
 
 import com.codeborne.selenide.WebDriverRunner
-import com.framework.test.application.config.factory.ApplicationConfigReaderFactory
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.BaseTest
 import com.framework.test.ui.browser.BrowserConfig
 import com.framework.test.ui.driver.factory.WebDriverConfigSetterFactory
 import org.junit.jupiter.api.AfterAll
@@ -10,14 +9,12 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class BaseUITest {
-  protected val applicationConfig: ApplicationConfig =
-    ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
+abstract class BaseUiTest : BaseTest() {
 
   @BeforeAll
   fun setUp() {
     WebDriverConfigSetterFactory().setDriverConfigFactory().setDriverConfig()
-    BrowserConfig(applicationConfig).setBaseUrlFromApplicationConfig()
+    BrowserConfig.setBaseUrlFromApplicationConfig()
   }
 
   @AfterAll

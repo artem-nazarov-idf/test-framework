@@ -1,9 +1,6 @@
 package com.framework.test.api
 
-import com.framework.test.application.config.factory.ApplicationConfigReaderFactory
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.BaseTest
 
-abstract class ApiBaseTest {
-  protected val applicationConfig: ApplicationConfig =
-    ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
+abstract class ApiBaseTest : BaseTest() {
 }

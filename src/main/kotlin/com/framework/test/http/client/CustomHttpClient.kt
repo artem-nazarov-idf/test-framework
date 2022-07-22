@@ -1,15 +1,14 @@
 package com.framework.test.http.client
 
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.context.applicationConfig
 import okhttp3.RequestBody
 import okhttp3.Response
 
 class CustomHttpClient(
-  applicationConfig: ApplicationConfig,
-  private val baseUrl: String = applicationConfig.host!!
+  private val baseUrl: String = applicationConfig().host!!
 ) : HttpClient {
 
-  private val client = HttpClientBuilder(applicationConfig).buildDefaultClient()
+  private val client = HttpClientBuilder().buildDefaultClient()
 
   override fun get(
     endpoint: String,

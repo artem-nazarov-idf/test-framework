@@ -1,14 +1,15 @@
 package com.framework.test.ui.page
 
+import com.framework.test.context.administrator
 import com.framework.test.ui.page.crm.CrmAdminHomePage
 import com.framework.test.ui.page.crm.CrmLoginPage
 import org.junit.jupiter.api.Test
 
-class CrmLoginTest : BaseUITest() {
+class CrmLoginTest : BaseUiTest() {
   @Test
   fun `success login crm to administrator`() {
-    with(applicationConfig.crmUsers?.administrator!!) {
-      CrmLoginPage(applicationConfig).apply {
+    with(administrator()) {
+      CrmLoginPage().apply {
         openPage()
         setEmail(login)
         setPassword(password)
@@ -17,6 +18,6 @@ class CrmLoginTest : BaseUITest() {
         verifyLoginFormNotVisible()
       }
     }
-    CrmAdminHomePage(applicationConfig).evaluateDropDownVisible()
+    CrmAdminHomePage().evaluateDropDownVisible()
   }
 }

@@ -4,15 +4,15 @@ import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$x`
 import com.codeborne.selenide.SelenideElement
-import com.framework.test.model.config.ApplicationConfig
+import com.framework.test.context.applicationConfig
 import com.framework.test.ui.element.CustomClick.clickButton
 import com.framework.test.ui.element.CustomInput.setInputField
 import com.framework.test.ui.page.BasePage
 import org.apache.logging.log4j.kotlin.Logging
 import org.openqa.selenium.By
 
-class CrmLoginPage(applicationConfig: ApplicationConfig) : Logging, BasePage() {
-  override val urlPage = applicationConfig.crmLoginEndpoint!!
+class CrmLoginPage() : Logging, BasePage() {
+  override val urlPage = applicationConfig().crmLoginEndpoint!!
 
   private val loginForm: SelenideElement = `$`("form[action='/#/login']")
   private val emailInputField: SelenideElement = `$`(By.name("username"))
