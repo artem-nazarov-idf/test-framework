@@ -1,7 +1,6 @@
 package com.framework.test.db
 
 import com.framework.test.BaseTest
-import com.framework.test.context.dbSqlConfig
 import com.framework.test.db.models.UserFromUserAccount
 import com.framework.test.db.models.toUserFromUserAccount
 import com.framework.test.db.rawQuery.SqlQuery
@@ -10,16 +9,14 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class SimpleDbTest : BaseTest() {
-  private val dbClient by lazy { MyDbClient(dbSqlConfig().url, dbSqlConfig().user, dbSqlConfig().password) }
-
   private val actualOneUser: DbData? =
-    dbClient.selectOneRow(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
+    MyDbClient.selectOneRow(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
   private val actualManyUser: List<DbData> =
-    dbClient.selectAllRows(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
+    MyDbClient.selectAllRows(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
 
   @AfterAll
   fun closeDbConnection() {
-    dbClient.closeDbConnection()
+    MyDbClient.closeDbConnection()
   }
 
   @Test
@@ -35,7 +32,7 @@ class SimpleDbTest : BaseTest() {
   @Test
   fun `get specific user by name`() {
     val actualSpecificUser: UserFromUserAccount? =
-      dbClient.selectOneRow(
+      MyDbClient.selectOneRow(
         SqlQuery.getSpecificUserByNameSelectQuery,
         toUserFromUserAccount, mapOf("name" to "Пиппп Рмари")
       ) as UserFromUserAccount?

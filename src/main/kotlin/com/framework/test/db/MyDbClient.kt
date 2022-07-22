@@ -1,15 +1,16 @@
 package com.framework.test.db
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLQueryInterruptedException
+import com.framework.test.context.dbSqlConfig
+import com.mysql.cj.jdbc.exceptions.MySQLTimeoutException
 import com.vladsch.kotlin.jdbc.Row
 import com.vladsch.kotlin.jdbc.Session
 import com.vladsch.kotlin.jdbc.session
 import com.vladsch.kotlin.jdbc.sqlQuery
 
-class MyDbClient(
-  private val jdbcUrl: String, private val jdbcUser: String, private val jdbcPassword: String
-) :
-  DbClient {
+object MyDbClient : DbClient {
+  private val jdbcUrl = dbSqlConfig().url
+  private val jdbcUser = dbSqlConfig().user
+  private val jdbcPassword = dbSqlConfig().password
   private var session: Session? = null
 
   override fun getClient(): Session {
@@ -17,7 +18,7 @@ class MyDbClient(
       try {
         session = session(url = jdbcUrl, user = jdbcUser, password = jdbcPassword)
       } catch (e: Exception) {
-        throw MySQLQueryInterruptedException("MySql connection failed for $jdbcUrl")
+        throw MySQLTimeoutException("MySql connection failed for $jdbcUrl")
       }
     }
     return session as Session
