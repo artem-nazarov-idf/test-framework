@@ -24,16 +24,24 @@ class MyDbClient(
     return session as Session
   }
 
-  override fun selectOneRow(): Member? {
-    val aliceQuery = sqlQuery("select id,login,name from user_account where login = 'ospanova77@bk.ru'") // тут
-    // пока адский хардкод
-    val good: Boolean = getClient().execute(aliceQuery)
-    return getClient().first(aliceQuery, toMember)
+  override fun selectOneRow(
+    sqlQueryRaw: String,
+    queryParams: Map<String, Any>,
+  ): Member? {
+    val sqlQuery =
+//      sqlQuery("select id,login,name from user_account where name = 'Sergey Shikunets'") // тут пока хардкод.
+      sqlQuery(sqlQueryRaw, queryParams) // тут пока хардкод.
+    return getClient().first(sqlQuery, toMember)
   }
 
-  override fun selectAllRows(): List<Member> {
-    val allMembersQuery = sqlQuery("select id,login,name created_at from members")
-    return getClient().list(allMembersQuery, toMember)
+  override fun selectAllRows(
+    sqlQueryRaw: String,
+    queryParams: Map<String, Any>,
+  ): List<Member> {
+    val sqlQuery =
+//      sqlQuery("select id,login,name from user_account where name = 'Sergey Shikunets'") // тут пока хардкод.
+      sqlQuery(sqlQueryRaw, queryParams) // тут пока хардкод.
+    return getClient().list(sqlQuery, toMember)
   }
 
   override fun closeDbConnection() {
@@ -47,15 +55,19 @@ class MyDbClient(
 // todo вынести отдельно
 data class Member(
   val id: Int,
-  val login: String,
-  val name: String
-)
+  val login: String?,
+  val name: String?
+) {
+  init {
+    println(this.id)
+  }
+}
 
 // todo вынести отдельно
 val toMember: (Row) -> Member = { row ->
   Member(
     row.int("id"),
     row.string("login"),
-    row.string("name"),
+    row.string("name")
   )
 }

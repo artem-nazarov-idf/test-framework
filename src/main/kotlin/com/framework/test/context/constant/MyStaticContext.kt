@@ -8,9 +8,5 @@ import com.framework.test.model.config.ApplicationConfig
 class MyStaticContext : Context {
   val applicationConfig: ApplicationConfig =
     ApplicationConfigReaderFactory().getAppConfigReaderFactory().getApplicationConfigFromFile()
-
-  //  val stubConfig: StubConfig = applicationConfig.stub
-//  val dbSqlConfig: DbSqlConfig = applicationConfig.dbSqlConfig
-//  val administrator: CrmUser = applicationConfig.crmUsers!![CrmUserRole.ADMINISTRATOR]!!
   val sessionContext = SessionContext()
 }
