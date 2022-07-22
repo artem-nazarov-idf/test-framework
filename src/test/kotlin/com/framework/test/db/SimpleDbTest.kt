@@ -2,13 +2,18 @@ package com.framework.test.db
 
 import com.framework.test.BaseTest
 import com.framework.test.context.dbSqlConfig
-import com.framework.test.db.rawQuery.sqlQuery
+import com.framework.test.db.models.toUserFromUserAccount
+import com.framework.test.db.rawQuery.SqlQuery
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class SimpleDbTest : BaseTest() {
   private val dbClient by lazy { MyDbClient(dbSqlConfig().url, dbSqlConfig().user, dbSqlConfig().password) }
+  private val actualOneUser: DbData? =
+    dbClient.selectOneRow(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
+  private val actualManyUser: List<DbData> =
+    dbClient.selectAllRows(SqlQuery.recentCrmUsersSelectQuery, toUserFromUserAccount)
 
   @AfterAll
   fun closeDbConnection() {
@@ -16,19 +21,12 @@ class SimpleDbTest : BaseTest() {
   }
 
   @Test
-  fun getOneRow() {
-    val value: Member? = dbClient.selectOneRow(sqlQuery.selectUserDataFromUserAccountTableById)
-
-    Assertions.assertEquals(100000, value?.id)
-    Assertions.assertEquals("Sergey Shikunets", value?.name)
-    Assertions.assertEquals("admmin", value?.login)
+  fun `select one row to get first user`() {
+    Assertions.assertEquals(actualOneUser, actualManyUser[0])
   }
 
   @Test
-  fun getAllRow() {
-    val value: List<Member> = dbClient.selectAllRows(sqlQuery.crmUserSelectQuery)
-
-    Assertions.assertTrue(value.size > 1)
-//    Assertions.assertTrue(value[0] ) todo
+  fun `select all rows to get more than one record`() {
+    Assertions.assertTrue(actualManyUser.size > 1, "actualManyUser size is ${actualManyUser.size}")
   }
 }

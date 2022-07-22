@@ -1,5 +1,6 @@
 package com.framework.test.db
 
+import com.vladsch.kotlin.jdbc.Row
 import com.vladsch.kotlin.jdbc.Session
 
 interface DbClient {
@@ -7,13 +8,15 @@ interface DbClient {
 
   fun selectOneRow(
     sqlQueryRaw: String,
-    queryParams: Map<String, Any> = mapOf(),
-  ): Member?
+    extractor: (Row) -> DbData,
+    queryParams: Map<String, Any> = mapOf()
+  ): DbData?
 
   fun selectAllRows(
     sqlQueryRaw: String,
-    queryParams: Map<String, Any> = mapOf(),
-  ): List<Member>
+    extractor: (Row) -> DbData,
+    queryParams: Map<String, Any> = mapOf()
+  ): List<DbData>
 
   fun closeDbConnection()
 }

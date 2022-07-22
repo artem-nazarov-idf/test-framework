@@ -12,13 +12,12 @@ class MyDbClient(
   DbClient {
   private var session: Session? = null
 
-  override fun getClient(): Session { // todo не факт, что это имелось ввиду.
+  override fun getClient(): Session {
     if (session == null) {
       try {
         session = session(url = jdbcUrl, user = jdbcUser, password = jdbcPassword)
       } catch (e: Exception) {
-//        throw IdfKotlinJdbcException("MySql connection failed for $jdbcUrl", e)
-        throw MySQLQueryInterruptedException("MySql connection failed for $jdbcUrl") // наваял на коленке, надо поменять
+        throw MySQLQueryInterruptedException("MySql connection failed for $jdbcUrl")
       }
     }
     return session as Session
@@ -26,22 +25,20 @@ class MyDbClient(
 
   override fun selectOneRow(
     sqlQueryRaw: String,
-    queryParams: Map<String, Any>,
-  ): Member? {
-    val sqlQuery =
-//      sqlQuery("select id,login,name from user_account where name = 'Sergey Shikunets'") // тут пока хардкод.
-      sqlQuery(sqlQueryRaw, queryParams) // тут пока хардкод.
-    return getClient().first(sqlQuery, toMember)
+    extractor: (Row) -> DbData,
+    queryParams: Map<String, Any>
+  ): DbData? {
+    val sqlQuery = sqlQuery(sqlQueryRaw, queryParams)
+    return getClient().first(sqlQuery, extractor)
   }
 
   override fun selectAllRows(
     sqlQueryRaw: String,
-    queryParams: Map<String, Any>,
-  ): List<Member> {
-    val sqlQuery =
-//      sqlQuery("select id,login,name from user_account where name = 'Sergey Shikunets'") // тут пока хардкод.
-      sqlQuery(sqlQueryRaw, queryParams) // тут пока хардкод.
-    return getClient().list(sqlQuery, toMember)
+    extractor: (Row) -> DbData,
+    queryParams: Map<String, Any>
+  ): List<DbData> {
+    val sqlQuery = sqlQuery(sqlQueryRaw, queryParams)
+    return getClient().list(sqlQuery, extractor)
   }
 
   override fun closeDbConnection() {
@@ -50,24 +47,4 @@ class MyDbClient(
       session = null
     }
   }
-}
-
-// todo вынести отдельно
-data class Member(
-  val id: Int,
-  val login: String?,
-  val name: String?
-) {
-  init {
-    println(this.id)
-  }
-}
-
-// todo вынести отдельно
-val toMember: (Row) -> Member = { row ->
-  Member(
-    row.int("id"),
-    row.string("login"),
-    row.string("name")
-  )
 }

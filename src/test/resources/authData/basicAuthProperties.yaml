@@ -20,7 +20,7 @@ stub:
 
 #DB SQL master#release:
 dbSqlConfig:
-  url: jdbc:mysql://10.1.1.74:3306/kz_release_solva #подумать надо ли использовать схему вообще//
+  url: jdbc:mysql://10.1.1.74:3306 #подумать надо ли использовать схему вообще//
   user: automation-tests
   password: Isdklf564tf89ODasfj35645traefdsf
-  mainSchema: kz_master_solva #kz_release_solva
+  mainSchema: kz_release_solva #kz_release_solva
